@@ -48,7 +48,7 @@ In addition, I created Custom Tabs for all major objects including Booking, Book
 
 Overall, this setup establishes a structured and scalable data model that supports a fully functional travel booking system within Salesforce, with consistent picklist usage, calculated fields, and clear user accessibility through tabs.
 
-## Field Dependencies
+## Milestone 5: Field Dependencies
 
 In this project, I used Field Dependencies in Salesforce to make my forms more dynamic, user-friendly, and context-sensitive. Field dependencies allowed me to control which picklist values appear based on what the user selects in another field, helping reduce data entry errors and improving the overall experience.
 
