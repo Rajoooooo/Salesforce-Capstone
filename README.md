@@ -9,7 +9,7 @@ Filled in the form with:
 
 Job Title: Developer
 
-Company: My college name
+Company: Developer
 
 Clicked "Sign Me Up"
 
@@ -30,4 +30,12 @@ Once all required information is filled out and the appropriate settings are sel
 
 This setup creates a robust foundation for managing customer information within a custom Salesforce data model.
 
-##
+## Milestone 3: Tabs
+
+To make custom objects easily accessible in the Salesforce interface, I created tabs for each one. I began by going to the Setup page and typing "Tabs" in the Quick Find bar. I then clicked on the Tabs section under the User Interface. Under the Custom Object Tabs section, I clicked New to start the process of creating a new tab.
+
+For the first object, Customer Info, I selected it from the object dropdown and chose a tab style (icon and color) to represent it. I clicked Next, and on the Add to Profiles page, I kept the default visibility settings. On the Add to Custom Apps page, I unchecked the option to include the tab in any app by default but ensured that the option to append the tab to the user's existing personal customizations was checked. I then clicked Save to complete the creation of the tab.
+
+I followed the same exact steps for the remaining custom objects: Booking, Booking Guest, Travel Package, Payment, Employee, and Feedback. Creating these tabs allows each object to be accessed directly from the Salesforce navigation menu, improving usability and enabling quick access for managing records.
+
+
