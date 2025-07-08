@@ -182,3 +182,9 @@ I named the rule “Follow-up Task After Booking Completion” and set the Evalu
 In the task setup, I assigned the task to the Booking Owner and set the Subject to “Follow up for feedback”. For the Due Date, I used the Travelling End Date of the booking and added 3 days to it. I set the Priority to Normal, the Status to Not Started, and added a comment: “Please contact the customer for feedback about the recent trip.” After saving the task and clicking Done, I returned to the Workflow Rule detail page and clicked Activate to turn it on.
 
 Now, each time a booking is completed, Salesforce automatically creates a follow-up task for the travel agent to check in with the customer, helping ensure better service and useful feedback collection.
+
+## Milestone 10: Process Builder
+
+To reduce manual updates and improve efficiency in the Tours and Travels CRM, I created a Process Builder automation that automatically sets a booking’s status to “Confirmed” once a related payment is marked as Completed. From Setup, I searched for Process Builder, clicked New, and named the process "Update Booking to Confirmed When Payment Completed". I set it to start when a record changes and selected Booking Payment as the object, triggering the process when a record is created or edited.
+
+Next, I added a criteria named Payment Completed, where the condition checks if the Payment_Status__c field equals “Completed”. If true, the process runs an immediate action to update the related Booking record, setting its Booking Status to “Confirmed.” After configuring the update, I saved the process and clicked Activate. Now, every time a payment is completed, the booking is automatically updated to confirmed without manual input.
