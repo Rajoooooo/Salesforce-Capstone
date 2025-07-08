@@ -196,3 +196,13 @@ To automate key parts of the Tours and Travel CRM booking process, I created an 
 In the same trigger, I added logic to generate Booking_Guest__c records based on the number of travelers specified in the booking. For every traveler, a guest record is created and linked to the same booking, with placeholder names like "Guest 1", "Guest 2", etc.
 
 These features were implemented using the Developer Console in Salesforce through a trigger (BookingTrigger) and a handler class (BookingTriggerHandler). Together, they streamline the booking workflow, reduce manual data entry, and ensure that essential related records are consistently created and linked.
+
+## Milestone 12: Asynchronous Apex
+
+To automate essential customer communications in the Tours and Travels CRM system, several Apex automation techniques were implemented using Future, Queueable, Batchable, and Schedulable Apex classes. First, a Future method was developed in the BookingConfirmationEmailer class to send confirmation emails to customers when a Booking__c record's status is updated to "Confirmed". The corresponding logic was added in the BookingTrigger to detect this change and asynchronously send the email to the customer using their stored email address.
+
+Next, to send tour reminder emails to customers three days before their scheduled travel date, a Queueable class named BookingReminderQueueable was implemented. It processes a list of upcoming bookings and sends emails accordingly. A Schedulable class, BookingReminderScheduler, was also created to query relevant bookings and enqueue the queueable job. This scheduler is then set to run daily at 6 AM via the UI or System.schedule using a cron expression.
+
+Lastly, for sending payment reminders to customers whose bookings remain in "Pending" status a day after booking, a Batchable Apex class called PaymentReminderBatch was created. It queries all such records and sends out reminder emails. An accompanying Schedulable class, SchedulePaymentReminderBatch, was built to execute the batch class daily. This scheduled job is configured in Setup > Apex Classes > Schedule Apex, set to run daily at 5 AM from Sunday to Saturday.
+
+These automation enhancements improve customer communication efficiency and ensure timely follow-ups without manual intervention.
