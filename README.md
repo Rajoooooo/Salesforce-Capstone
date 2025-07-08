@@ -188,3 +188,11 @@ Now, each time a booking is completed, Salesforce automatically creates a follow
 To reduce manual updates and improve efficiency in the Tours and Travels CRM, I created a Process Builder automation that automatically sets a booking’s status to “Confirmed” once a related payment is marked as Completed. From Setup, I searched for Process Builder, clicked New, and named the process "Update Booking to Confirmed When Payment Completed". I set it to start when a record changes and selected Booking Payment as the object, triggering the process when a record is created or edited.
 
 Next, I added a criteria named Payment Completed, where the condition checks if the Payment_Status__c field equals “Completed”. If true, the process runs an immediate action to update the related Booking record, setting its Booking Status to “Confirmed.” After configuring the update, I saved the process and clicked Activate. Now, every time a payment is completed, the booking is automatically updated to confirmed without manual input.
+
+## Milestone 11: Triggers
+
+To automate key parts of the Tours and Travel CRM booking process, I created an Apex trigger and handler class that generate related records automatically. When a new Booking__c record is created, a corresponding Payment__c record is inserted with a default status of "Pending." This ensures that the payment process is immediately tied to each booking.
+
+In the same trigger, I added logic to generate Booking_Guest__c records based on the number of travelers specified in the booking. For every traveler, a guest record is created and linked to the same booking, with placeholder names like "Guest 1", "Guest 2", etc.
+
+These features were implemented using the Developer Console in Salesforce through a trigger (BookingTrigger) and a handler class (BookingTriggerHandler). Together, they streamline the booking workflow, reduce manual data entry, and ensure that essential related records are consistently created and linked.
