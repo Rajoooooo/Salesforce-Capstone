@@ -163,3 +163,12 @@ Finally, in Step 9, I added an Approval Step named "Travel Agent Manager Approva
 
 Once all steps were configured and reviewed, I went to the Approval Process Detail Page and clicked the "Activate" button to deploy it. The process is now live and ensures a structured, consistent workflow for handling booking cancellations, while keeping both internal users and customers informed at every stage.
 
+## Milestone 8: Flows
+
+To ensure data integrity between the number of guests and travelers in our Tours and Travels CRM, I created a Record-Triggered Flow that prevents users from saving a BookingGuest record if it would result in exceeding the number of travelers specified in the related Booking record. I started by going to Setup, searched for Flow in the Quick Find box, and clicked New Flow. I chose Record-Triggered Flow and clicked Create. For the object, I selected BookingGuest, and configured it to trigger when a record is created or updated. I then set the flow to run using the Fast Field Updates option for better performance.
+
+Next, I added a Get Records element to fetch the related Booking record. I named it Get Booking Records, selected the Booking object, and chose to automatically store all fields from the record. After that, I added a Decision element to check if the number of booking guests had exceeded the number of travelers. I labeled it To Check Guests > Travellers, and configured the outcome to compare the value of {!$Record.Booking__r.No_of_Booking_Guests_Info_Available__c} against {!$Record.Booking__r.Number_of_Travelers__c}. If the guest count was higher, the flow would follow the "Yes" outcome path.
+
+To display a proper message, I went to the Toolbox and created a Text Template resource named ErrorMessageTemplate. In the body, I wrote: “Sorry, we can't add more guests because the maximum number of Travellers for this booking has already been reached,” and selected Plain Text view. I then added a Custom Error element under the “Yes” path, labeled it Error Message, set the error location to show in a window on the record page, and used the ErrorMessageTemplate resource as the message.
+
+Finally, I saved the flow as a new version with the label "Show Error if Guests > Travellers", and clicked Activate. With this flow in place, the system now automatically prevents users from exceeding the allowed guest count per booking, improving both user experience and data accuracy.
