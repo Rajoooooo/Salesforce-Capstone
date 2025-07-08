@@ -136,3 +136,30 @@ Before creating any users in Salesforce, I made sure to complete all the necessa
 To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Users. I clicked New User to create the first record. I entered the following details: First Name as Michael, Last Name as Jackson, an Alias (e.g., mjackson), and my personal email address to receive the activation link. I then assigned a unique Username in the format text@text.text (e.g., m.jackson@tourscrm.com), added a Nickname, and set the Role to Travel Agent Manager Role. I selected the Salesforce Platform as the User License, and assigned the Travel Agent Profile. After verifying all fields, I saved the user, which triggered a welcome email for account setup.
 
 Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
+
+## Milestone 7: Approval Process
+
+Before implementing the approval process, I first made sure to complete all required milestones—specifically the setup of Profiles, Roles, and Users—since these components are essential for assigning approval responsibilities and managing record visibility. Once those were in place, I proceeded to build the Booking Cancellation Approval Process.
+
+I began by creating the necessary Classic Email Templates. From Setup, I typed “Email Templates” in the Quick Find box and selected Classic Email Templates. I clicked “New Template”, selected “Text” as the format since it doesn’t require rich formatting, and clicked Next. For the first template, I used the name "Booking Cancellation Approval Notification" and saved it under the Unfiled Public Email Templates folder. I set the subject line to "Approval Needed: Booking {!Booking__c.Name}" and added a message body notifying the assigned approver that a booking cancellation was awaiting approval, including dynamic merge fields like the booking name and owner name.
+
+Next, I created a second template for notifying customers when their cancellation request is approved. I named it "Cancellation Approved". In the body, I inserted dynamic fields like the customer name, travel package, booking number, and travel start date. I also included a confirmation message indicating that the refund will be processed soon. Following that, I created a third template named "Cancellation Rejected". This one notifies the customer when a cancellation is declined, and includes details such as their travel package, booking ID, and travel date, along with a polite message explaining that the request did not meet the required conditions.
+
+Once the email templates were ready, I moved on to configuring the Approval Process itself. From Setup, I typed “Approval Processes” into the Quick Find box and selected Approval Processes under Process Automation. I clicked on the Booking object, then selected “Create New Approval Process” using the Standard Setup Wizard.
+
+For Step 1, I gave the process the name "Booking Cancellation Approval" and kept the auto-generated unique name. I set the Entry Criteria so that the process would only trigger when the Booking Status equals "Cancelled", and the Cancel Confirmation field equals "True". This ensures only valid and confirmed cancellation requests go through the approval process.
+
+In Step 2, I configured the Approver Assignment. I chose to automatically assign the request either to a specific user (like a manager) or to the manager of the user who submitted the record, depending on the use case. I made sure that the relevant users had managers defined in their user profiles.
+
+For Step 3, I selected the "Booking Cancellation Approval Notification" email template to be used as the notification email for approvers. In Step 4, I chose the fields that approvers should see in the approval layout, including Booking Number, Customer, Owner, Travel Package, Cancellation Reason, Travel Start Date, and Total Billing Amount. I added these to the selection and arranged them in a logical order.
+
+For Step 5, I defined the Initial Submitters as users assigned the Travel Agent Role and the Booking Owner. These are the users allowed to initiate the approval request. I then moved to Step 6 to configure Initial Submission Actions—here, I created a Field Update that sets the Booking Status field to "Pending" once the request is submitted.
+
+In Step 7, I defined the Final Approval Actions. First, I created a field update to set the Approval Status to "Approved". Then, I created an Email Alert to send the "Cancellation Approved" template to the customer once their cancellation is approved. The recipient was set to the customer email field, and the sender was configured as the current user.
+
+Step 8 covered the Final Rejection Actions. I created two field updates: one to revert the Booking Status to "Confirmed", and another to set the Approval Status to "Rejected". I also created an email alert that uses the "Cancellation Rejected" email template, which is automatically sent to the customer if their request is denied.
+
+Finally, in Step 9, I added an Approval Step named "Travel Agent Manager Approval". I chose to have all matching records enter this step, and assigned the approver to a specific user—such as Michael Jackson, who was previously created under the Travel Agent Manager Role. This ensures the right person is always notified to take action on cancellation requests.
+
+Once all steps were configured and reviewed, I went to the Approval Process Detail Page and clicked the "Activate" button to deploy it. The process is now live and ensures a structured, consistent workflow for handling booking cancellations, while keeping both internal users and customers informed at every stage.
+
