@@ -100,3 +100,20 @@ In the final step, I configured user access. From the Available Profiles list, I
 
 With this setup, the Tours & Travels CRM Lightning App is now available to users with the appropriate profile and provides a centralized workspace tailored for travel-related operations.
 
+## Roles and Role Hierarchy
+
+To define clear record-level visibility and ensure proper data access across departments, I created three new roles under the CEO role in Salesforce. These roles help establish a structured role hierarchy, making it easier to manage who can see and access specific records.
+
+I started by going to Setup, then typed “Roles” into the Quick Find box and selected “Set Up Roles.” This brought me to the role hierarchy page where I located the CEO role.
+
+From there, I clicked “Add Role” directly under the CEO node. In the form that appeared, I entered the Label as “Finance Officer Role”—the Role Name field was auto-filled based on the label. I then clicked Save to add the role.
+
+Next, I repeated the same steps to add two more roles under the CEO:
+
+First, I added the “Marketing Executive Role”.
+
+Then, I added the “Customer Service Rep Role.”
+
+Each role was created by clicking Add Role under the CEO, entering the appropriate label, and saving the record.
+
+By setting up these roles under the CEO, I established a clear and scalable hierarchy, ensuring that record visibility aligns with each department's responsibilities while maintaining centralized oversight at the executive level.
