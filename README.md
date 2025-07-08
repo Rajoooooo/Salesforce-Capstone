@@ -172,3 +172,13 @@ Next, I added a Get Records element to fetch the related Booking record. I named
 To display a proper message, I went to the Toolbox and created a Text Template resource named ErrorMessageTemplate. In the body, I wrote: “Sorry, we can't add more guests because the maximum number of Travellers for this booking has already been reached,” and selected Plain Text view. I then added a Custom Error element under the “Yes” path, labeled it Error Message, set the error location to show in a window on the record page, and used the ErrorMessageTemplate resource as the message.
 
 Finally, I saved the flow as a new version with the label "Show Error if Guests > Travellers", and clicked Activate. With this flow in place, the system now automatically prevents users from exceeding the allowed guest count per booking, improving both user experience and data accuracy.
+
+## Milestone 9: Workflow
+
+To automate customer follow-ups and improve post-trip engagement, I created a Workflow Rule in Salesforce that automatically generates a Task for the Travel Agent to contact the customer for feedback whenever a booking is marked as Completed. From Setup, I searched for and selected Workflow Rules, then clicked New Rule and chose to continue with Workflow Rules. I selected Booking as the object and clicked Next.
+
+I named the rule “Follow-up Task After Booking Completion” and set the Evaluation Criteria to “Created, and every time it’s edited” to ensure the rule runs whenever the booking status changes. For the Rule Criteria, I specified that the rule should run if the Booking Status field equals "Completed". After saving the rule, I clicked Add Workflow Action and selected New Task.
+
+In the task setup, I assigned the task to the Booking Owner and set the Subject to “Follow up for feedback”. For the Due Date, I used the Travelling End Date of the booking and added 3 days to it. I set the Priority to Normal, the Status to Not Started, and added a comment: “Please contact the customer for feedback about the recent trip.” After saving the task and clicking Done, I returned to the Workflow Rule detail page and clicked Activate to turn it on.
+
+Now, each time a booking is completed, Salesforce automatically creates a follow-up task for the travel agent to check in with the customer, helping ensure better service and useful feedback collection.
