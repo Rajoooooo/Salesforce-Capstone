@@ -100,7 +100,7 @@ In the final step, I configured user access. From the Available Profiles list, I
 
 With this setup, the Tours & Travels CRM Lightning App is now available to users with the appropriate profile and provides a centralized workspace tailored for travel-related operations.
 
-## Roles and Role Hierarchy
+## Milestone: 24: Roles and Role Hierarchy
 
 To define clear record-level visibility and ensure proper data access across departments, I created three new roles under the CEO role in Salesforce. These roles help establish a structured role hierarchy, making it easier to manage who can see and access specific records.
 
