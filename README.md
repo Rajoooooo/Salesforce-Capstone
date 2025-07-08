@@ -117,3 +117,15 @@ Then, I added the “Customer Service Rep Role.”
 Each role was created by clicking Add Role under the CEO, entering the appropriate label, and saving the record.
 
 By setting up these roles under the CEO, I established a clear and scalable hierarchy, ensuring that record visibility aligns with each department's responsibilities while maintaining centralized oversight at the executive level.
+
+## Milestone 23: Profile
+To properly manage access and responsibilities within the Tours and Travels CRM, I created several custom profiles in Salesforce, each tailored to specific roles in the organization. I began by creating the Travel Agent Profile. From Setup, I searched for Profiles in the Quick Find box, clicked on Profiles, and cloned the Standard Platform User profile. I named the new profile Travel Agent Profile and saved it. While still on the profile page, I clicked Edit, then set the Tours and Travels CRM as the default app under Custom App Settings. I scrolled down to the Custom Object Permissions and configured the necessary access: I gave Read, Create, and Edit permissions for Bookings, Booking Guest, Booking Payments, Customer Info, and Travel Package objects. I also provided Read-only access to the Employee and Feedback objects. I saved the changes, completing the setup for this role.
+
+In addition, I created a Tour Guide Profile by cloning the Salesforce Platform User profile. I named it Tour Guide, saved it, and edited the settings to set Tours and Travels CRM as the default app. For this profile, I only gave Read access to the Bookings, Booking Guests, and Travel Packages objects, ensuring that tour guides could view essential information without modifying data.
+
+Next, I created the Finance Officer Profile, again cloning from Salesforce Platform User. I configured it to allow access to financial and booking data. I enabled Read, Create, and Edit permissions for Booking Payments, Bookings, and Customer Info, while giving Read-only access to Feedback and Travel Package records. This setup helps ensure financial data is visible and editable to finance personnel only.
+
+Similarly, I created a Marketing Executive Profile, also based on the Salesforce Platform User. I granted access to Customer Info, Feedback, and Travel Packages, enabling marketing staff to access customer insights and package details while limiting their ability to modify booking data. Finally, I created a Customer Service Rep Profile that includes Read and Edit access to Bookings, Customer Info, and Feedback, allowing service agents to view and respond to customer concerns effectively.
+
+Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
+
