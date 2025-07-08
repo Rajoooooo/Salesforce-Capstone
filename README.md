@@ -129,3 +129,10 @@ Similarly, I created a Marketing Executive Profile, also based on the Salesforce
 
 Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
 
+## Milestone 16: Users
+
+Before creating any users in Salesforce, I made sure to complete all the necessary setup for Profiles and Roles. This included configuring roles such as Travel Agent Manager, Travel Agent, Finance Officer, Marketing Executive, Customer Service Representative, and Tour Guide, each paired with a custom profile that defines the appropriate level of access. Once these foundational elements were in place, I proceeded to create the users.
+
+To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Users. I clicked New User to create the first record. I entered the following details: First Name as Michael, Last Name as Jackson, an Alias (e.g., mjackson), and my personal email address to receive the activation link. I then assigned a unique Username in the format text@text.text (e.g., m.jackson@tourscrm.com), added a Nickname, and set the Role to Travel Agent Manager Role. I selected the Salesforce Platform as the User License, and assigned the Travel Agent Profile. After verifying all fields, I saved the user, which triggered a welcome email for account setup.
+
+Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
