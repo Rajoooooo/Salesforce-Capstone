@@ -62,44 +62,6 @@ I implemented this feature specifically in the Booking Guest object, where I mad
 To maintain accurate and consistent data in Salesforce, I implemented Validation Rules that enforce specific conditions before a record can be saved. These rules are designed to catch incorrect or incomplete inputs by automatically displaying an error message when the data entered doesn't meet the defined criteria. For example, I created a validation rule to prevent saving a new record unless the Status picklist is set to “Pending.” This ensures that users follow the correct status flow when creating records. I used logical functions like ISNEW() and ISPICKVAL() to define these conditions, and thoroughly tested the rule to make sure it works as intended. By doing this, I was able to improve the reliability of our data and reduce manual errors during data entry.
 To ensure data quality in my Salesforce application, I implemented Validation Rules that verify whether the data entered into a record meets specific criteria before it can be saved. I configured these rules so that if a user enters invalid or incomplete information, Salesforce displays an error message and prevents the record from being saved. This helps maintain consistency and accuracy across the system. For example, I created a validation rule to restrict certain picklist values unless other conditions are met, ensuring that users follow the correct process flow when submitting records.
 
-# Milestone 13: The Lighting App
-
-To organize and streamline access to the core features of our travel management system, I created a custom Lightning App in Salesforce named “Tours & Travels CRM.”
-
-I began by navigating to Setup, then typed “App Manager” in the Quick Find box and selected App Manager from the results. On the App Manager page, I clicked “New Lightning App” to start the setup process.
-
-In the App Details & Branding step, I entered “Tours & Travels CRM” as the App Name. I also uploaded a custom image that reflects the theme of tours and travel—this serves as the visual icon for the app and helps with branding. Once the image was uploaded, I clicked Next to proceed.
-
-In the App Options step, I kept the default selections (such as “App Settings” and “Navigation Style”) and continued by clicking Next. Similarly, in the Utility Bar section, I left the default options untouched and clicked Next again.
-
-In the Navigation Items step, I customized the app by selecting the most relevant custom and standard objects. I moved the following from Available Items to Selected Items:
-
-Customers Info
-
-TravelPackages
-
-Booking
-
-Booking Payments
-
-BookingGuests
-
-Employees
-
-Feedback
-
-Task
-
-Reports
-
-Dashboards
-
-These items provide the core functionality of the Tours & Travels CRM and ensure that end users can easily access all essential modules within the app.
-
-In the final step, I configured user access. From the Available Profiles list, I selected System Administrator and moved it to Selected Profiles to give full access to system admins. Once everything was reviewed, I clicked Save & Finish to create and activate the app.
-
-With this setup, the Tours & Travels CRM Lightning App is now available to users with the appropriate profile and provides a centralized workspace tailored for travel-related operations.
-
 ## Milestone: 24: Roles and Role Hierarchy
 
 To define clear record-level visibility and ensure proper data access across departments, I created three new roles under the CEO role in Salesforce. These roles help establish a structured role hierarchy, making it easier to manage who can see and access specific records.
@@ -128,14 +90,6 @@ Next, I created the Finance Officer Profile, again cloning from Salesforce Platf
 Similarly, I created a Marketing Executive Profile, also based on the Salesforce Platform User. I granted access to Customer Info, Feedback, and Travel Packages, enabling marketing staff to access customer insights and package details while limiting their ability to modify booking data. Finally, I created a Customer Service Rep Profile that includes Read and Edit access to Bookings, Customer Info, and Feedback, allowing service agents to view and respond to customer concerns effectively.
 
 Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
-
-## Milestone 16: Users
-
-Before creating any users in Salesforce, I made sure to complete all the necessary setup for Profiles and Roles. This included configuring roles such as Travel Agent Manager, Travel Agent, Finance Officer, Marketing Executive, Customer Service Representative, and Tour Guide, each paired with a custom profile that defines the appropriate level of access. Once these foundational elements were in place, I proceeded to create the users.
-
-To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Users. I clicked New User to create the first record. I entered the following details: First Name as Michael, Last Name as Jackson, an Alias (e.g., mjackson), and my personal email address to receive the activation link. I then assigned a unique Username in the format text@text.text (e.g., m.jackson@tourscrm.com), added a Nickname, and set the Role to Travel Agent Manager Role. I selected the Salesforce Platform as the User License, and assigned the Travel Agent Profile. After verifying all fields, I saved the user, which triggered a welcome email for account setup.
-
-Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
 
 ## Milestone 7: Approval Process
 
@@ -203,7 +157,36 @@ To automate essential customer communications in the Tours and Travels CRM syste
 
 Next, to send tour reminder emails to customers three days before their scheduled travel date, a Queueable class named BookingReminderQueueable was implemented. It processes a list of upcoming bookings and sends emails accordingly. A Schedulable class, BookingReminderScheduler, was also created to query relevant bookings and enqueue the queueable job. This scheduler is then set to run daily at 6 AM via the UI or System.schedule using a cron expression.
 
-## Milestone 13: Editing of Page Layouts
+# Milestone 13: The Lighting App
+
+To organize and streamline access to the core features of our travel management system, I created a custom Lightning App in Salesforce named “Tours & Travels CRM.”
+
+I began by navigating to Setup, then typed “App Manager” in the Quick Find box and selected App Manager from the results. On the App Manager page, I clicked “New Lightning App” to start the setup process.
+
+In the App Details & Branding step, I entered “Tours & Travels CRM” as the App Name. I also uploaded a custom image that reflects the theme of tours and travel—this serves as the visual icon for the app and helps with branding. Once the image was uploaded, I clicked Next to proceed.
+
+In the App Options step, I kept the default selections (such as “App Settings” and “Navigation Style”) and continued by clicking Next. Similarly, in the Utility Bar section, I left the default options untouched and clicked Next again.
+
+In the Navigation Items step, I customized the app by selecting the most relevant custom and standard objects. I moved the following from Available Items to Selected Items:
+
+Customers Info
+TravelPackages
+Booking
+Booking Payments
+BookingGuests
+Employees
+Feedback
+Task
+Reports
+Dashboards
+
+These items provide the core functionality of the Tours & Travels CRM and ensure that end users can easily access all essential modules within the app.
+
+In the final step, I configured user access. From the Available Profiles list, I selected System Administrator and moved it to Selected Profiles to give full access to system admins. Once everything was reviewed, I clicked Save & Finish to create and activate the app.
+
+With this setup, the Tours & Travels CRM Lightning App is now available to users with the appropriate profile and provides a centralized workspace tailored for travel-related operations.
+
+## Milestone 14: Editing of Page Layouts
 
 As part of optimizing the user interface in Salesforce, I updated the Page Layouts for several custom objects to improve field organization and ensure better data visibility. First, I navigated to Setup > Object Manager and searched for each object individually using the Quick Find box.
 
@@ -219,3 +202,24 @@ Each layout change was finalized by clicking Save, ensuring that the revised con
 Lastly, for sending payment reminders to customers whose bookings remain in "Pending" status a day after booking, a Batchable Apex class called PaymentReminderBatch was created. It queries all such records and sends out reminder emails. An accompanying Schedulable class, SchedulePaymentReminderBatch, was built to execute the batch class daily. This scheduled job is configured in Setup > Apex Classes > Schedule Apex, set to run daily at 5 AM from Sunday to Saturday.
 
 These automation enhancements improve customer communication efficiency and ensure timely follow-ups without manual intervention.
+
+## Milestone 15: Dynamic Forms
+
+To enable Dynamic Forms for the Booking object in my Salesforce Tours & Travels CRM app, I first logged in to my Salesforce account and clicked on the App Launcher from the Setup menu. From there, I opened the Tours & Travels CRM App and navigated to the Booking tab. I clicked New, filled out the required details to create a new Booking record, and then saved it.
+
+After creating the record, I clicked on the gear icon in the top-right corner and selected Edit Page to open the Lightning App Builder. On the page layout, I clicked on the Details section. On the right-hand panel, I saw the option to "Upgrade Now" under Dynamic Forms, so I clicked it to begin enabling the feature for this object.
+
+In the upgrade wizard, I selected the layout named "Booking PageLayout" and clicked Finish to apply the changes. Once Dynamic Forms were enabled, I started configuring field visibility. I clicked on the Cancellation Date field, then clicked on Filter in the right pane and set the field visibility rule: I selected Booking Status as the field, Equals as the operator, and Cancelled as the value. I clicked Done to save this filter.
+
+I repeated the same process for the Cancel Confirmation and Approval Status fields—each time setting the visibility filter based on Booking Status equals Cancelled and confirming by clicking Done.
+
+After configuring all field visibility settings, I clicked Save, and then selected Activate to publish the changes. I chose Org Default, selected both Desktop and Phone as the form factors, clicked Next, and finally clicked Save to complete the setup.
+
+## Milestone 16: Users
+
+Before creating any users in Salesforce, I made sure to complete all the necessary setup for Profiles and Roles. This included configuring roles such as Travel Agent Manager, Travel Agent, Finance Officer, Marketing Executive, Customer Service Representative, and Tour Guide, each paired with a custom profile that defines the appropriate level of access. Once these foundational elements were in place, I proceeded to create the users.
+
+To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Users. I clicked New User to create the first record. I entered the following details: First Name as Michael, Last Name as Jackson, an Alias (e.g., mjackson), and my personal email address to receive the activation link. I then assigned a unique Username in the format text@text.text (e.g., m.jackson@tourscrm.com), added a Nickname, and set the Role to Travel Agent Manager Role. I selected the Salesforce Platform as the User License, and assigned the Travel Agent Profile. After verifying all fields, I saved the user, which triggered a welcome email for account setup.
+
+Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
+
