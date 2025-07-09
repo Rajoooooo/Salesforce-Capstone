@@ -203,6 +203,19 @@ To automate essential customer communications in the Tours and Travels CRM syste
 
 Next, to send tour reminder emails to customers three days before their scheduled travel date, a Queueable class named BookingReminderQueueable was implemented. It processes a list of upcoming bookings and sends emails accordingly. A Schedulable class, BookingReminderScheduler, was also created to query relevant bookings and enqueue the queueable job. This scheduler is then set to run daily at 6 AM via the UI or System.schedule using a cron expression.
 
+## Milestone 13: Editing of Page Layouts
+
+As part of optimizing the user interface in Salesforce, I updated the Page Layouts for several custom objects to improve field organization and ensure better data visibility. First, I navigated to Setup > Object Manager and searched for each object individually using the Quick Find box.
+
+Starting with Customer Info, I accessed the object’s layout under the “Page Layouts” section, rearranged the fields as required for better readability, and saved the changes. I followed the same steps for the BookingGuest object, adjusting the layout to ensure relevant guest details are easily accessible.
+
+Next, I modified the TravelPackage layout, organizing the fields to highlight key travel package information. After that, I updated the Employee layout by arranging the fields logically to display staff information clearly.
+
+I also made layout improvements to the Booking object, ensuring that booking details like status, traveler info, and related data are grouped properly. For the Booking Payments object, I reorganized fields to present payment details more efficiently.
+
+Lastly, I updated the Feedbacks object layout to streamline the visibility of customer feedback records.
+
+Each layout change was finalized by clicking Save, ensuring that the revised configurations were applied successfully across all objects. These updates help streamline the CRM workflow and enhance usability for all users accessing these records.
 Lastly, for sending payment reminders to customers whose bookings remain in "Pending" status a day after booking, a Batchable Apex class called PaymentReminderBatch was created. It queries all such records and sends out reminder emails. An accompanying Schedulable class, SchedulePaymentReminderBatch, was built to execute the batch class daily. This scheduled job is configured in Setup > Apex Classes > Schedule Apex, set to run daily at 5 AM from Sunday to Saturday.
 
 These automation enhancements improve customer communication efficiency and ensure timely follow-ups without manual intervention.
