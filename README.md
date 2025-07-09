@@ -233,3 +233,20 @@ Next, I went to Object Settings inside the permission set and searched for the T
 
 To assign this permission set to the appropriate user, I clicked Manage Assignments and then selected Add Assignment. From the user list, I selected the user with the Travel Agent Manager role, clicked Next, and then completed the process by clicking Assign.
 
+## Milestone 17: Reports
+
+To begin working with reports, I first navigated to the App Launcher and searched for the Reports tab. Once there, I created a new report folder labeled "Revenue Folder". The folder's unique name was auto-generated. After saving the folder, I proceeded to share it by clicking the dropdown arrow next to the folder name under the “All Folders” section. I chose to share it with specific roles—namely, the Travel Agent Manager Role and the Finance Officer Role—and granted them View access.
+
+Next, I created several reports to support business analysis needs. Before creating reports, I ensured that there were 10 recent records in every relevant object, and that all required fields were filled in. Specifically for the Booking object, I made sure that all new records had the Booking Status set to "Pending".
+
+For Report 1, I created a Monthly Revenue Report using the Booking report type. I selected columns such as Booking Number, Customer, Booking Date, and Total Billing Amount, and removed any unnecessary fields. In the filters section, I set the criteria to show all bookings for this month with statuses Confirmed or Completed. I created a Bucket field on Total Billing Amount named Revenue Category, with ranges labeled as Low (0–50,000), Medium (50,001–200,000), and High (over 200,000). I grouped rows by Travel Package and Revenue Category, added a Pie Chart, and saved the report into the Revenue Folder.
+
+For Report 2: Pending Payments, I used the Booking Payments with Bookings report type. I filtered the report to show records where Payment_Status__c = Pending, and selected relevant columns to display payment and booking details. This report was also saved under the Revenue Folder.
+
+For Report 3: Top Travel Packages, I selected the Bookings with Travel Packages report type. I grouped the rows by TravelPackage__r.Name and added a summary count of bookings per travel package. The results were sorted by the highest count, giving a clear view of the most popular travel packages. The report was saved with the name Top Travel Packages.
+
+For Report 4: Employee Roles Distribution, I chose the Employees report type. I grouped rows by the Role__c field and added a count summary to see the number of employees per role. This report was saved as Employee Role Breakdown.
+
+Finally, I created five additional custom reports for other use cases, such as analyzing customer bookings by country, tracking bookings by month, monitoring feedback ratings, assessing package popularity over time, and listing high-value clients. Each report was saved in relevant folders for easy organization and access.
+
+This comprehensive report setup provides valuable insights into booking trends, employee distribution, payment status, and overall business performance.
