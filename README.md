@@ -250,3 +250,14 @@ For Report 4: Employee Roles Distribution, I chose the Employees report type. I 
 Finally, I created five additional custom reports for other use cases, such as analyzing customer bookings by country, tracking bookings by month, monitoring feedback ratings, assessing package popularity over time, and listing high-value clients. Each report was saved in relevant folders for easy organization and access.
 
 This comprehensive report setup provides valuable insights into booking trends, employee distribution, payment status, and overall business performance.
+
+## Milestone 18: Dashboard
+
+To begin with the dashboard setup, I navigated to the Dashboards tab within the Tours & Travels CRM application. I clicked on New Dashboard, gave it the name "Tours & Travels Dashboard", and then clicked Create. Inside the dashboard builder, I added the first component by clicking on the +Widget button. I selected the Monthly Revenue Report as the source report for this component. For data visualization, I chose the Pie Chart option, set the Maximum Values Displayed to 10, and added the subtitle “Total payments completed Bookings”. To give it a polished look, I applied the Dark Theme, then clicked Add, followed by Save.
+
+After that, I proceeded to Activity 2, where I added three additional components to the same dashboard using the reports created during Activity 4 of the Reports Milestone. I selected appropriate charts and tables for each report, ensuring the data was presented clearly and informatively. These components offered insights into pending payments, popular travel packages, and employee role distribution—each providing valuable visual data to support business decisions.
+
+For Activity 3, I verified the dashboard display. I accessed it by clicking the App Launcher, searched for and opened the Tours & Travels CRM app, then navigated to the Dashboards tab. There, I opened the Tours & Travels Dashboard and confirmed that it visually displayed all 4 components, reflecting the expected graphs and tables from the reports.
+
+Lastly, in Activity 4, I created two additional dashboards using other reports from the Reports Milestone. Each dashboard focused on specific business areas—such as Booking & Payment Insights and Employee & Package Overview—helping provide better management visibility across CRM operations. All dashboards were saved in appropriate folders and structured with clear, well-labeled charts to ensure readability and usefulness.
+
