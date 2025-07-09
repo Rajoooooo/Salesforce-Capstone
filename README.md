@@ -223,3 +223,13 @@ To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Use
 
 Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
 
+## Milestone 25: Permission Set
+
+To provide additional access to the Travel Agent Manager role in Salesforce, I started by navigating to Setup. In the Quick Find box, I typed Permission Set and selected it from the search results. Then, I clicked on the New button to create a new permission set.
+
+I entered the label “Extra Permission For Travel Agent Manager” and clicked Save to create the permission set. Once saved, I selected the newly created permission set from the list.
+
+Next, I went to Object Settings inside the permission set and searched for the TravelPackage object. I clicked Edit next to the TravelPackage object, scrolled down to the Object Permissions section, and enabled the permissions for Read, Edit, Create, and Delete (R/E/C/D). After updating these permissions, I clicked Save.
+
+To assign this permission set to the appropriate user, I clicked Manage Assignments and then selected Add Assignment. From the user list, I selected the user with the Travel Agent Manager role, clicked Next, and then completed the process by clicking Assign.
+
