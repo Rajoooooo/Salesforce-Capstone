@@ -62,35 +62,6 @@ I implemented this feature specifically in the Booking Guest object, where I mad
 To maintain accurate and consistent data in Salesforce, I implemented Validation Rules that enforce specific conditions before a record can be saved. These rules are designed to catch incorrect or incomplete inputs by automatically displaying an error message when the data entered doesn't meet the defined criteria. For example, I created a validation rule to prevent saving a new record unless the Status picklist is set to “Pending.” This ensures that users follow the correct status flow when creating records. I used logical functions like ISNEW() and ISPICKVAL() to define these conditions, and thoroughly tested the rule to make sure it works as intended. By doing this, I was able to improve the reliability of our data and reduce manual errors during data entry.
 To ensure data quality in my Salesforce application, I implemented Validation Rules that verify whether the data entered into a record meets specific criteria before it can be saved. I configured these rules so that if a user enters invalid or incomplete information, Salesforce displays an error message and prevents the record from being saved. This helps maintain consistency and accuracy across the system. For example, I created a validation rule to restrict certain picklist values unless other conditions are met, ensuring that users follow the correct process flow when submitting records.
 
-## Milestone: 24: Roles and Role Hierarchy
-
-To define clear record-level visibility and ensure proper data access across departments, I created three new roles under the CEO role in Salesforce. These roles help establish a structured role hierarchy, making it easier to manage who can see and access specific records.
-
-I started by going to Setup, then typed “Roles” into the Quick Find box and selected “Set Up Roles.” This brought me to the role hierarchy page where I located the CEO role.
-
-From there, I clicked “Add Role” directly under the CEO node. In the form that appeared, I entered the Label as “Finance Officer Role”—the Role Name field was auto-filled based on the label. I then clicked Save to add the role.
-
-Next, I repeated the same steps to add two more roles under the CEO:
-
-First, I added the “Marketing Executive Role”.
-
-Then, I added the “Customer Service Rep Role.”
-
-Each role was created by clicking Add Role under the CEO, entering the appropriate label, and saving the record.
-
-By setting up these roles under the CEO, I established a clear and scalable hierarchy, ensuring that record visibility aligns with each department's responsibilities while maintaining centralized oversight at the executive level.
-
-## Milestone 23: Profile
-To properly manage access and responsibilities within the Tours and Travels CRM, I created several custom profiles in Salesforce, each tailored to specific roles in the organization. I began by creating the Travel Agent Profile. From Setup, I searched for Profiles in the Quick Find box, clicked on Profiles, and cloned the Standard Platform User profile. I named the new profile Travel Agent Profile and saved it. While still on the profile page, I clicked Edit, then set the Tours and Travels CRM as the default app under Custom App Settings. I scrolled down to the Custom Object Permissions and configured the necessary access: I gave Read, Create, and Edit permissions for Bookings, Booking Guest, Booking Payments, Customer Info, and Travel Package objects. I also provided Read-only access to the Employee and Feedback objects. I saved the changes, completing the setup for this role.
-
-In addition, I created a Tour Guide Profile by cloning the Salesforce Platform User profile. I named it Tour Guide, saved it, and edited the settings to set Tours and Travels CRM as the default app. For this profile, I only gave Read access to the Bookings, Booking Guests, and Travel Packages objects, ensuring that tour guides could view essential information without modifying data.
-
-Next, I created the Finance Officer Profile, again cloning from Salesforce Platform User. I configured it to allow access to financial and booking data. I enabled Read, Create, and Edit permissions for Booking Payments, Bookings, and Customer Info, while giving Read-only access to Feedback and Travel Package records. This setup helps ensure financial data is visible and editable to finance personnel only.
-
-Similarly, I created a Marketing Executive Profile, also based on the Salesforce Platform User. I granted access to Customer Info, Feedback, and Travel Packages, enabling marketing staff to access customer insights and package details while limiting their ability to modify booking data. Finally, I created a Customer Service Rep Profile that includes Read and Edit access to Bookings, Customer Info, and Feedback, allowing service agents to view and respond to customer concerns effectively.
-
-Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
-
 ## Milestone 7: Approval Process
 
 Before implementing the approval process, I first made sure to complete all required milestones—specifically the setup of Profiles, Roles, and Users—since these components are essential for assigning approval responsibilities and managing record visibility. Once those were in place, I proceeded to build the Booking Cancellation Approval Process.
@@ -223,16 +194,6 @@ To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Use
 
 Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
 
-## Milestone 25: Permission Set
-
-To provide additional access to the Travel Agent Manager role in Salesforce, I started by navigating to Setup. In the Quick Find box, I typed Permission Set and selected it from the search results. Then, I clicked on the New button to create a new permission set.
-
-I entered the label “Extra Permission For Travel Agent Manager” and clicked Save to create the permission set. Once saved, I selected the newly created permission set from the list.
-
-Next, I went to Object Settings inside the permission set and searched for the TravelPackage object. I clicked Edit next to the TravelPackage object, scrolled down to the Object Permissions section, and enabled the permissions for Read, Edit, Create, and Delete (R/E/C/D). After updating these permissions, I clicked Save.
-
-To assign this permission set to the appropriate user, I clicked Manage Assignments and then selected Add Assignment. From the user list, I selected the user with the Travel Agent Manager role, clicked Next, and then completed the process by clicking Assign.
-
 ## Milestone 17: Reports
 
 To begin working with reports, I first navigated to the App Launcher and searched for the Reports tab. Once there, I created a new report folder labeled "Revenue Folder". The folder's unique name was auto-generated. After saving the folder, I proceeded to share it by clicking the dropdown arrow next to the folder name under the “All Folders” section. I chose to share it with specific roles—namely, the Travel Agent Manager Role and the Finance Officer Role—and granted them View access.
@@ -300,3 +261,54 @@ Next, I created a Duplicate Rule. From Setup, I searched for "Duplicate Rules", 
 In the Matching Rules section of the Duplicate Rule setup, I clicked Add Rule, selected the previously created matching rule (Unique Email and Phone Number Combination), and saved the configuration. Finally, I clicked Activate to enforce the rule.
 
 This setup helps maintain data accuracy by preventing duplicate customer records based on identical email and phone number combinations.
+
+## Milestone 23: Profile
+To properly manage access and responsibilities within the Tours and Travels CRM, I created several custom profiles in Salesforce, each tailored to specific roles in the organization. I began by creating the Travel Agent Profile. From Setup, I searched for Profiles in the Quick Find box, clicked on Profiles, and cloned the Standard Platform User profile. I named the new profile Travel Agent Profile and saved it. While still on the profile page, I clicked Edit, then set the Tours and Travels CRM as the default app under Custom App Settings. I scrolled down to the Custom Object Permissions and configured the necessary access: I gave Read, Create, and Edit permissions for Bookings, Booking Guest, Booking Payments, Customer Info, and Travel Package objects. I also provided Read-only access to the Employee and Feedback objects. I saved the changes, completing the setup for this role.
+
+In addition, I created a Tour Guide Profile by cloning the Salesforce Platform User profile. I named it Tour Guide, saved it, and edited the settings to set Tours and Travels CRM as the default app. For this profile, I only gave Read access to the Bookings, Booking Guests, and Travel Packages objects, ensuring that tour guides could view essential information without modifying data.
+
+Next, I created the Finance Officer Profile, again cloning from Salesforce Platform User. I configured it to allow access to financial and booking data. I enabled Read, Create, and Edit permissions for Booking Payments, Bookings, and Customer Info, while giving Read-only access to Feedback and Travel Package records. This setup helps ensure financial data is visible and editable to finance personnel only.
+
+Similarly, I created a Marketing Executive Profile, also based on the Salesforce Platform User. I granted access to Customer Info, Feedback, and Travel Packages, enabling marketing staff to access customer insights and package details while limiting their ability to modify booking data. Finally, I created a Customer Service Rep Profile that includes Read and Edit access to Bookings, Customer Info, and Feedback, allowing service agents to view and respond to customer concerns effectively.
+
+Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
+
+## Milestone: 24: Roles and Role Hierarchy
+
+To define clear record-level visibility and ensure proper data access across departments, I created three new roles under the CEO role in Salesforce. These roles help establish a structured role hierarchy, making it easier to manage who can see and access specific records.
+
+I started by going to Setup, then typed “Roles” into the Quick Find box and selected “Set Up Roles.” This brought me to the role hierarchy page where I located the CEO role.
+
+From there, I clicked “Add Role” directly under the CEO node. In the form that appeared, I entered the Label as “Finance Officer Role”—the Role Name field was auto-filled based on the label. I then clicked Save to add the role.
+
+Next, I repeated the same steps to add two more roles under the CEO:
+
+First, I added the “Marketing Executive Role”.
+
+Then, I added the “Customer Service Rep Role.”
+
+Each role was created by clicking Add Role under the CEO, entering the appropriate label, and saving the record.
+
+By setting up these roles under the CEO, I established a clear and scalable hierarchy, ensuring that record visibility aligns with each department's responsibilities while maintaining centralized oversight at the executive level.
+
+## Milestone 25: Permission Set
+
+To provide additional access to the Travel Agent Manager role in Salesforce, I started by navigating to Setup. In the Quick Find box, I typed Permission Set and selected it from the search results. Then, I clicked on the New button to create a new permission set.
+
+I entered the label “Extra Permission For Travel Agent Manager” and clicked Save to create the permission set. Once saved, I selected the newly created permission set from the list.
+
+Next, I went to Object Settings inside the permission set and searched for the TravelPackage object. I clicked Edit next to the TravelPackage object, scrolled down to the Object Permissions section, and enabled the permissions for Read, Edit, Create, and Delete (R/E/C/D). After updating these permissions, I clicked Save.
+
+To assign this permission set to the appropriate user, I clicked Manage Assignments and then selected Add Assignment. From the user list, I selected the user with the Travel Agent Manager role, clicked Next, and then completed the process by clicking Assign.
+
+## Milestone 26: Sharing Setting
+
+To enhance data security and controlled visibility in the Tours & Travels CRM, I configured the Organization-Wide Default (OWD) and defined a custom sharing rule for the Customer Info object.
+
+I started by going to Setup, typed "Sharing Settings" in the Quick Find box, and selected it. After clicking Edit, I located the Customer Info object and changed its OWD access level to "Private" to ensure only record owners and users above them in the role hierarchy can see the records. I then clicked Save and refreshed the page.
+
+Next, I created a custom sharing rule to allow broader visibility for specific roles. I scrolled down to the Customer Info Sharing Rules section and clicked New. I entered the label “Customer records auto-shared with Tour Guide Role”; the rule name was automatically generated.
+
+In Step 3, I chose to share records owned by members of Roles > Travel Agent Role. In Step 4, I specified the target users to share with as Roles > Tour Guide Role. Then in Step 5, I set the access level to Read Only, ensuring that Tour Guides can view the customer records but not edit them.
+
+Finally, I clicked Save to activate the sharing rule, allowing secure and role-based access to Customer Info records.
