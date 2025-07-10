@@ -278,3 +278,13 @@ To make the Travel Package Selector component accessible within the Tours & Trav
 After clicking Next, I chose a One Region layout and clicked Done. In the builder canvas, I searched for the travelpackageselector component and dragged it into the designated region. I then clicked Save and Activate the page.
 
 For activation, I chose Lightning Experience, selected the Tours & Travels CRM app to add the new page, and saved the configuration. Finally, I navigated to the App Launcher, searched for “Travel,” and found both the Tours & Travels CRM app and the new Travel Package Selector app page. Opening either lets users interact with the component—where they can select a country and view its associated travel packages dynamically based on previously created data.
+
+## Milestone 21: Field History Tracking
+
+To monitor important field changes in the Tours & Travels CRM, I enabled Field History Tracking on selected objects and fields. I began by navigating to Setup, then used the Quick Find box to search for Field History Tracking.
+
+For the Booking object, I selected View next to it and enabled tracking. I chose to track changes on the following fields: Number of Travelers, Booking Status, and TravelPackage. After selecting these, I clicked Save to apply the changes.
+
+Next, I enabled tracking for the TravelPackage object. Again, from the Field History Tracking settings, I searched for TravelPackage, clicked View, and enabled tracking for the fields Price Per Person and Availability Status. These changes ensure that any updates to these fields are recorded and can be viewed later in the related "History" section of the object layout.
+
+This setup helps maintain a transparent audit trail of key booking and package details for business oversight.
