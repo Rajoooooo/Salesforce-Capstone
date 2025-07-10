@@ -288,3 +288,15 @@ For the Booking object, I selected View next to it and enabled tracking. I chose
 Next, I enabled tracking for the TravelPackage object. Again, from the Field History Tracking settings, I searched for TravelPackage, clicked View, and enabled tracking for the fields Price Per Person and Availability Status. These changes ensure that any updates to these fields are recorded and can be viewed later in the related "History" section of the object layout.
 
 This setup helps maintain a transparent audit trail of key booking and package details for business oversight.
+
+## Milestone 22: Duplicate nand Matching rule
+
+To ensure that customer entries remain unique in the Tours & Travels CRM, I configured a Matching Rule followed by a Duplicate Rule for the Customer Info object.
+
+First, I went to Setup, typed "Matching Rules" in the Quick Find box, and clicked New Rule. I selected the object Customer Info and proceeded by clicking Next. I named the rule "Unique Email and Phone Number Combination". Under Matching Criteria, I selected the fields Email and Phone, set their Matching Method to Exact, and enabled the option "Match Blank Fields". After reviewing, I clicked Next, then Save & Activate to enable the rule.
+
+Next, I created a Duplicate Rule. From Setup, I searched for "Duplicate Rules", clicked New Rule, and chose the same object: Customer Info. I entered the rule name "Unique Email and Phone". For both Action On Create and Action On Edit, I selected "Allow and Report". In the Alert Text, I typed: "Email and Phone must be Unique" to notify users if they attempt to enter a duplicate record.
+
+In the Matching Rules section of the Duplicate Rule setup, I clicked Add Rule, selected the previously created matching rule (Unique Email and Phone Number Combination), and saved the configuration. Finally, I clicked Activate to enforce the rule.
+
+This setup helps maintain data accuracy by preventing duplicate customer records based on identical email and phone number combinations.
