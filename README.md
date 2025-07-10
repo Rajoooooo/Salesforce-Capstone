@@ -261,3 +261,13 @@ For Activity 3, I verified the dashboard display. I accessed it by clicking the 
 
 Lastly, in Activity 4, I created two additional dashboards using other reports from the Reports Milestone. Each dashboard focused on specific business areas—such as Booking & Payment Insights and Employee & Package Overview—helping provide better management visibility across CRM operations. All dashboards were saved in appropriate folders and structured with clear, well-labeled charts to ensure readability and usefulness.
 
+## Milestone 19: Lightning Web Component Creation
+
+To dynamically display travel packages based on a selected country during booking, I implemented a Lightning Web Component (LWC) integrated with an Apex Controller. First, I created an Apex class named TravelPackageController via the Developer Console. This class includes a method getPackagesByCountry, which queries all travel packages where the Country__c matches the selected input.
+
+Next, using the Lightning Studio Chrome extension, I created a new LWC named TravelPackageSelector, exposing it to App, Home, and Record pages. In the HTML file, I designed a simple interface with a country dropdown (lightning-combobox) and a display card for the matching travel packages. The JavaScript file (travelPackageSelector.js) handles the country selection and fetches matching records from Apex using @wire-like imperative call with getPackagesByCountry.
+
+I defined a static list of countries in the JS file for selection, and based on user interaction, the UI dynamically updates to show the available packages—without any page reload. Each package card displays important details like name, type, duration, guide availability, places covered, and more. The component metadata XML (.js-meta.xml) ensures it's accessible on different Lightning pages.
+
+With this setup, users now have a dynamic, user-friendly interface to view only relevant travel packages based on the selected country, improving the overall booking experience.
+
