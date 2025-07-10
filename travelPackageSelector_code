@@ -1,0 +1,97 @@
+## travelPackageSelector.html
+<template>
+    <lightning-card title="Travel Packages">
+        <div class="slds-p-around_medium">
+            <lightning-combobox 
+                name="country"
+                label="Select Country"
+                value={selectedCountry}
+                placeholder="Choose a country"
+                options={countryOptions}
+                onchange={handleCountryChange}>
+            </lightning-combobox>
+
+            <template if:true={packages}>
+                <template for:each={packages} for:item="pkg">
+                    <div key={pkg.Id} class="slds-box slds-m-top_small">
+                        <p><b>Package Type Name:</b> {pkg.Name}</p>
+                        <p><b>Package Type:</b> {pkg.Package_Type__c}</p>
+                        <p><b>Duration in Days:</b> {pkg.Duration_in_Days__c}</p>
+                        <p><b>Guide Facility:</b> {pkg.Guide_Included__c}</p>
+                        <p><b>Places Covered:</b> {pkg.Places_Covered__c}</p>
+                        <p><b>Membership:</b> {pkg.Membership__c}</p>
+                        <p><b>Region:</b> {pkg.Region__c}</p>
+                        <p><b>Transportation mode:</b> {pkg.Transportation_Modes__c}</p>
+                        <p><b>Availability Status:</b> {pkg.Availability_Status__c}</p>
+                        <p><b>Average Rating:</b> {pkg.Average_Rating__c}</p>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
+
+## travelPackageSelector.js
+
+import { LightningElement, track } from 'lwc';
+import getPackagesByCountry from '@salesforce/apex/TravelPackageController.getPackagesByCountry';
+
+export default class TravelPackageSelector extends LightningElement {
+    @track selectedCountry = '';
+    @track packages = [];
+    @track error;
+
+    get countryOptions() {
+        return [
+            { label: 'India', value: 'India' },
+            { label: 'France', value: 'France' },
+            { label: 'Philippines', value: 'Philippines' },
+            { label: 'USA', value: 'USA' },
+            { label: 'Saudi Arabia', value: 'Saudi Arabia' },
+            { label: 'Switzerland', value: 'Switzerland' },
+            { label: 'Thailand', value: 'Thailand' },
+            { label: 'Maldives', value: 'Maldives' },
+            { label: 'Dubai', value: 'Dubai' },
+            { label: 'Sri Lanka', value: 'Sri Lanka' },
+            { label: 'Bangkok', value: 'Bangkok' },
+            { label: 'Singapore', value: 'Singapore' },
+            { label: 'Myanmar', value: 'Myanmar' },
+            { label: 'Nepal', value: 'Nepal' }
+        ];
+    }
+
+    handleCountryChange(event) {
+        this.selectedCountry = event.detail.value;
+        this.packages = [];
+        this.error = undefined;
+
+        getPackagesByCountry({ country: this.selectedCountry })
+            .then(result => {
+                this.packages = result;
+            })
+            .catch(error => {
+                this.error = error.body.message;
+            });
+    }
+}
+
+## travelPackageSelector.css
+.custom-container{
+	color : black;
+}
+
+## travelPackageSelector.js-meta.xml
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+</LightningComponentBundle>
