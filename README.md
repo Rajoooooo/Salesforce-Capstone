@@ -271,3 +271,10 @@ I defined a static list of countries in the JS file for selection, and based on 
 
 With this setup, users now have a dynamic, user-friendly interface to view only relevant travel packages based on the selected country, improving the overall booking experience.
 
+## Milestone 20: Lightning App Page Creation
+
+To make the Travel Package Selector component accessible within the Tours & Travels CRM app, I used the Lightning App Builder. First, I opened the org, clicked the gear icon, and searched for Lightning App Builder in the Quick Find box. I clicked New, selected App Page, and proceeded to name the page Travel Package Selector.
+
+After clicking Next, I chose a One Region layout and clicked Done. In the builder canvas, I searched for the travelpackageselector component and dragged it into the designated region. I then clicked Save and Activate the page.
+
+For activation, I chose Lightning Experience, selected the Tours & Travels CRM app to add the new page, and saved the configuration. Finally, I navigated to the App Launcher, searched for “Travel,” and found both the Tours & Travels CRM app and the new Travel Package Selector app page. Opening either lets users interact with the component—where they can select a country and view its associated travel packages dynamically based on previously created data.
