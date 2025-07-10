@@ -1,0 +1,234 @@
+## BookingConfirmationEmailer.apex
+public class BookingConfirmationEmailer {
+    @future(callout=false)
+    public static void sendBookingConfirmation(Set<Id> bookingIds) {
+        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
+        List<Booking__c> bookings = [SELECT Id, Name, Customer_Email__c,  Total_Billing_Amount__c
+                                     FROM Booking__c
+                                     WHERE Id IN :bookingIds];
+        for (Booking__c booking : bookings) {
+            if (String.isNotBlank(booking.Customer_Email__c)) {
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                mail.setToAddresses(new String[] { booking.Customer_Email__c });
+                mail.setSubject('Booking Confirmed: ' + booking.Name);
+                mail.setPlainTextBody(
+                    'Dear Customer,' + '\n\n' +
+                    'Your booking has been confirmed. Please find the details below:\n' +
+                    'Booking ID: ' + booking.Name + '\n' +
+                    'Total Bill Amount Paid: $' + booking.Total_Billing_Amount__c + '\n\n' +
+                    'Thank you for booking with us!'
+                );
+                emails.add(mail);
+            }
+        }
+        if (!emails.isEmpty()) {
+            Messaging.sendEmail(emails);
+        }
+    }
+}
+
+## BookingReminderQueueable.apex
+public class BookingReminderQueueable implements Queueable {
+    List<Booking__c> bookingsToRemind;
+    public BookingReminderQueueable(List<Booking__c> bookings) {
+        this.bookingsToRemind = bookings;
+    }
+    public void execute(QueueableContext context) {
+        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
+        for (Booking__c booking : bookingsToRemind) {
+            if (String.isNotBlank(booking.Customer_Email__c)) {
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                mail.setToAddresses(new String[] { booking.Customer_Email__c });
+                mail.setSubject('Reminder: Your Tour Starts Soon!');
+                mail.setPlainTextBody(
+                    'Hello,\n\nThis is a friendly reminder that your tour is starting on ' +
+                    booking.Travelling_Start_Date__c.format() + 
+                    '. Please make necessary arrangements.\n\nThank you for choosing us!'
+                );
+                emails.add(mail);
+            }
+        }
+        if (!emails.isEmpty()) {
+            Messaging.sendEmail(emails);
+        }
+    }
+}
+
+## BookingTriggerHandler.apex
+public class BookingTriggerHandler {
+
+    public static void createPaymentRecords(List<Booking__c> newBookings) {
+        List<Payment__c> paymentsToInsert = new List<Payment__c>();
+
+        for (Booking__c booking : newBookings) {
+            Payment__c payment = new Payment__c();
+            payment.Booking__c = booking.Id;
+            payment.Payment_Status__c = 'Pending';
+            payment.Payment_Date__c = System.today(); // Required field
+            paymentsToInsert.add(payment);
+        }
+
+        if (!paymentsToInsert.isEmpty()) {
+            insert paymentsToInsert;
+        }
+    }
+
+    public static void createBookingGuests(List<Booking__c> bookings) {
+        List<Booking_Guest__c> guestsToInsert = new List<Booking_Guest__c>();
+
+        for (Booking__c booking : bookings) {
+            Integer count = (Integer)booking.Number_of_Travelers__c;
+
+            for (Integer i = 1; i <= count; i++) {
+                Booking_Guest__c guest = new Booking_Guest__c();
+                guest.Booking__c = booking.Id;
+                guest.Name = 'Guest ' + i;
+
+                // Required fields only
+                guest.Age__c = 30;
+                guest.Country__c = 'Philippines';
+
+                guestsToInsert.add(guest);
+            }
+        }
+
+        if (!guestsToInsert.isEmpty()) {
+            insert guestsToInsert;
+        }
+    }
+}
+
+## BookingTriggerTest.apex
+
+@isTest
+private class BookingTriggerTest {
+    @isTest
+    static void testTriggerCreatesPaymentAndGuestsWithUpdatedFields() {
+        // Create test customer with required fields
+        Customer_Info__c customer = new Customer_Info__c(
+            Name = 'John Doe',
+            Email__c = 'annapurna@gmail.com',
+            Phone__c = '1234567890',
+            Date_Of_Birth__c = Date.newInstance(1995, 5, 20)
+        );
+        insert customer;
+
+        // Create a Travel Package with required fields
+        Travel_Package__c packageRec = new Travel_Package__c(
+            Name = 'European Delight',
+            Country__c = 'India',
+            Price_Per_Person__c = 2000,
+            Duration_in_Days__c = 3,
+            Places_Covered__c = 'Delhi, Agra, Jaipur'
+        );
+        insert packageRec;
+
+        Booking__c booking = new Booking__c(
+            Number_of_Travelers__c = 3,
+            Booking_Status__c = 'Pending',
+            Travelling_Start_Date__c = Date.today().addDays(10),
+            Travel_Package__c = packageRec.Id,
+            Membership_Chosen_Req__c = 'Gold',
+            Preferred_Accommodation__c = 'Guest House',
+            Customer__c = customer.Id,
+            Customer_Email__c = 'annapurna@gmail.com',
+            Booking_Date__c = Date.today() // <-- Required field
+        );
+
+        Test.startTest();
+        insert booking;
+        Test.stopTest();
+
+        // Validate Payment__c creation
+        List<Payment__c> payments = [
+            SELECT Id, Booking__c, Payment_Status__c 
+            FROM Payment__c 
+            WHERE Booking__c = :booking.Id
+        ];
+        System.assertEquals(1, payments.size(), 'One payment record should be created.');
+        System.assertEquals('Pending', payments[0].Payment_Status__c, 'Default Payment Status should be Pending.');
+
+        // Validate Booking_Guest__c creation
+        List<Booking_Guest__c> guests = [
+            SELECT Id, Booking__c, Name 
+            FROM Booking_Guest__c 
+            WHERE Booking__c = :booking.Id
+        ];
+        System.assertEquals(3, guests.size(), 'Three BookingGuest records should be created.');
+        System.assertEquals('Guest 1', guests[0].Name, 'Guest naming should follow convention.');
+    }
+}
+
+## PaymentReminderBatch.apex
+
+global class PaymentReminderBatch implements Database.Batchable<SObject> {
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        Date targetDate = System.today().addDays(-1); // Bookings made yesterday
+        String query = 'SELECT Id, Name, Customer_Email__c, Booking_Date__c ' +
+                       'FROM Booking__c ' +
+                       'WHERE Booking_Status__c = \'Pending\' AND Booking_Date__c = :targetDate';
+        return Database.getQueryLocator(query);
+    }
+
+    global void execute(Database.BatchableContext bc, List<Booking__c> scope) {
+        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
+        for (Booking__c booking : scope) {
+            if (String.isNotBlank(booking.Customer_Email__c)) {
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+                mail.setToAddresses(new String[] { booking.Customer_Email__c });
+                mail.setSubject('Payment Reminder for Your Booking');
+                mail.setPlainTextBody('Hi,\n\nThis is a gentle reminder to complete your payment for booking: ' + booking.Name +
+                                      '.\n\nPlease make the payment to confirm your trip.\n\nThanks,\nTours & Travels CRM');
+                emails.add(mail);
+            }
+        }
+        if (!emails.isEmpty()) {
+            Messaging.sendEmail(emails);
+        }
+    }
+
+    global void finish(Database.BatchableContext bc) {
+        Messaging.SingleEmailMessage adminMail = new Messaging.SingleEmailMessage();
+        adminMail.setToAddresses(new String[] { 'annapurna@thesmartbridge.com' });
+        adminMail.setSubject('Daily Payment Reminder Batch Completed');
+        adminMail.setPlainTextBody('Payment reminders for pending bookings have been processed.');
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { adminMail });
+    }
+}
+
+## SchedulePaymentReminderBatch.apex
+
+public class SchedulePaymentReminderBatch implements Schedulable {
+    public void execute(SchedulableContext sc) {
+        PaymentReminderBatch batch = new PaymentReminderBatch();
+        Database.executeBatch(batch, 200);
+    }
+}
+
+TravelPackageController.apex
+
+public with sharing class TravelPackageController {
+
+    @AuraEnabled(cacheable=true)
+    public static List<Travel_Package__c> getPackagesByCountry(String country) {        
+        return [
+            SELECT 
+                Id, 
+                Name, 
+                Package_Type__c, 
+                Duration_in_Days__c,            
+                Guide_Included__c, 
+                Membership__c, 
+                Region__c,
+                Transportation_Modes__c,
+                Availability_Status__c,
+                Average_Rating__c,
+                Places_Covered__c 
+            FROM Travel_Package__c 
+            WHERE Country__c = :country
+        ];   
+    }
+
+}
+
+
