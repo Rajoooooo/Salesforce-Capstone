@@ -128,7 +128,7 @@ To automate essential customer communications in the Tours and Travels CRM syste
 
 Next, to send tour reminder emails to customers three days before their scheduled travel date, a Queueable class named BookingReminderQueueable was implemented. It processes a list of upcoming bookings and sends emails accordingly. A Schedulable class, BookingReminderScheduler, was also created to query relevant bookings and enqueue the queueable job. This scheduler is then set to run daily at 6 AM via the UI or System.schedule using a cron expression.
 
-# Milestone 13: The Lighting App
+## Milestone 13: The Lighting App
 
 To organize and streamline access to the core features of our travel management system, I created a custom Lightning App in Salesforce named “Tours & Travels CRM.”
 
@@ -312,3 +312,17 @@ Next, I created a custom sharing rule to allow broader visibility for specific r
 In Step 3, I chose to share records owned by members of Roles > Travel Agent Role. In Step 4, I specified the target users to share with as Roles > Tour Guide Role. Then in Step 5, I set the access level to Read Only, ensuring that Tour Guides can view the customer records but not edit them.
 
 Finally, I clicked Save to activate the sharing rule, allowing secure and role-based access to Customer Info records.
+
+## Milestone 27 -Test Classes
+
+To ensure the correct functioning of the BookingTrigger and BookingTriggerHandler logic, I created a dedicated test class called BookingTriggerTest. This test class verifies that when a new booking is inserted, related records for payment and booking guests are automatically created with the correct values. The test not only validates automation logic but also ensures Apex code coverage required for deployment.
+
+I began by logging into Salesforce with administrative privileges. From the top-right gear icon, I accessed Setup, then launched the Developer Console. Inside the console, I clicked on File > New > Apex Class and named it BookingTriggerTest.
+
+In the test method, I first inserted a sample Customer_Info__c record with test data, including the Date of Birth, which was a required field. Then I created and inserted a Travel_Package__c record, making sure to fill all mandatory fields such as Country__c, Price_Per_Person__c, Duration_in_Days__c, and Places_Covered__c.
+
+Next, I created a Booking__c record. I populated important fields like Number_of_Travelers__c, Booking_Status__c, and linked it to the travel package and customer created earlier. I also ensured the Booking_Date__c field was filled to avoid validation errors.
+
+After inserting the booking inside a Test.startTest() and Test.stopTest() block, the trigger logic fired. To confirm that the trigger and handler performed as expected, I queried for the related Payment__c record and asserted that it was created with a default status of "Pending". I also validated that the correct number of Booking_Guest__c records (three, in this case) were generated and named appropriately (e.g., "Guest 1").
+
+This test ensures the booking automation logic functions correctly and provides sufficient code coverage for deployment readiness. Once the test was saved, I ran it and confirmed that it passed without errors.
