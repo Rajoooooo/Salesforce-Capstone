@@ -326,3 +326,17 @@ Next, I created a Booking__c record. I populated important fields like Number_of
 After inserting the booking inside a Test.startTest() and Test.stopTest() block, the trigger logic fired. To confirm that the trigger and handler performed as expected, I queried for the related Payment__c record and asserted that it was created with a default status of "Pending". I also validated that the correct number of Booking_Guest__c records (three, in this case) were generated and named appropriately (e.g., "Guest 1").
 
 This test ensures the booking automation logic functions correctly and provides sufficient code coverage for deployment readiness. Once the test was saved, I ran it and confirmed that it passed without errors.
+
+## Milestone 28: Preparing Test Cases & Fixing Defects
+This section outlines the key test cases conducted to validate the core functionalities of the Tours & Travels CRM system, specifically focusing on customer creation, booking automation, and payment-triggered updates.
+
+Test Case 1: Customer Creation
+The first test verified that a new Customer record can be created successfully with all mandatory fields populated. The process involved navigating to the Customer Info object page, completing required fields such as Name, Email, Phone, and Date of Birth, and then saving the record. Upon saving, the system correctly displayed the newly created customer on the Customers List page. In cases where the save failed, missing required fields or blocking validation rules were identified as the cause.
+
+Test Case 2: Booking Creation and Related Records
+The second test confirmed that a Booking record can be created successfully with all required fields. After accessing the Booking object page and providing fields like Booking Date, Travel Package, Number of Travelers, and Customer, the record was saved without errors. As expected, related records were automatically created: a Booking Payment record was generated with a default status of "Pending", and a number of Booking Guest records were created to match the value in the "Number of Travelers" field. Any issues encountered were traced back to missing required fields, incorrect relationships, or Apex trigger logic not executing as expected.
+
+Test Case 3: Payment Status Update and Email Notification
+The final test focused on verifying automation triggered by the payment update. When the Payment Status on a Booking Payment record was updated to "Completed", the related Booking record automatically updated its status to "Confirmed". Additionally, an email notification was sent to the customer to inform them of their confirmed booking and payment completion. This workflow ensures a smooth and informative experience for customers. Any failures in automation were typically caused by configuration issues in Process Builder, email delivery problems, or logic errors in Apex classes.
+
+These test cases ensure that the system not only saves records correctly but also triggers the appropriate downstream logic such as record creation, status updates, and email communication, thereby validating the reliability of the overall CRM process.
