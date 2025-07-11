@@ -57,14 +57,14 @@ public class BookingReminderQueueable implements Queueable {
 ## BookingTriggerHandler.apex
 public class BookingTriggerHandler {
 
+    // Booking Payment Record Creation
     public static void createPaymentRecords(List<Booking__c> newBookings) {
         List<Payment__c> paymentsToInsert = new List<Payment__c>();
-
         for (Booking__c booking : newBookings) {
             Payment__c payment = new Payment__c();
             payment.Booking__c = booking.Id;
-            payment.Payment_Status__c = 'Pending';
-            payment.Payment_Date__c = System.today(); // Required field
+            payment.Payment_Status__c = 'Pending'; // Default status
+            payment.Payment_Date__c = Date.today(); // Required field
             paymentsToInsert.add(payment);
         }
 
@@ -73,20 +73,52 @@ public class BookingTriggerHandler {
         }
     }
 
+    // Booking Guests Record Creation
     public static void createBookingGuests(List<Booking__c> bookings) {
-        List<Booking_Guest__c> guestsToInsert = new List<Booking_Guest__c>();
+        Set<Id> bookingIds = new Set<Id>();
+        Set<Id> customerIds = new Set<Id>();
 
         for (Booking__c booking : bookings) {
+            if (booking.Customer__c != null) {
+                bookingIds.add(booking.Id);
+                customerIds.add(booking.Customer__c);
+            }
+        }
+
+        // Query existing Booking_Guest__c to prevent duplication
+        Map<Id, List<Booking_Guest__c>> existingGuestsMap = new Map<Id, List<Booking_Guest__c>>();
+        for (Booking_Guest__c guest : [
+            SELECT Id, Booking__c FROM Booking_Guest__c WHERE Booking__c IN :bookingIds
+        ]) {
+            if (!existingGuestsMap.containsKey(guest.Booking__c)) {
+                existingGuestsMap.put(guest.Booking__c, new List<Booking_Guest__c>());
+            }
+            existingGuestsMap.get(guest.Booking__c).add(guest);
+        }
+
+        // Query related Customer_Info__c
+        Map<Id, Customer_Info__c> customerMap = new Map<Id, Customer_Info__c>(
+            [SELECT Id, Name, Age__c, Country__c FROM Customer_Info__c WHERE Id IN :customerIds]
+        );
+
+        List<Booking_Guest__c> guestsToInsert = new List<Booking_Guest__c>();
+        for (Booking__c booking : bookings) {
+            if (existingGuestsMap.containsKey(booking.Id)) {
+                continue; // Guests already exist, skip this booking
+            }
+
             Integer count = (Integer)booking.Number_of_Travelers__c;
+            Customer_Info__c customer = customerMap.get(booking.Customer__c);
 
             for (Integer i = 1; i <= count; i++) {
                 Booking_Guest__c guest = new Booking_Guest__c();
                 guest.Booking__c = booking.Id;
-                guest.Name = 'Guest ' + i;
 
-                // Required fields only
-                guest.Age__c = 30;
-                guest.Country__c = 'Philippines';
+                if (customer != null) {
+                    guest.Name = customer.Name;
+                    guest.Age__c = customer.Age__c;
+                    guest.Country__c = customer.Country__c;
+                }
 
                 guestsToInsert.add(guest);
             }
@@ -97,7 +129,6 @@ public class BookingTriggerHandler {
         }
     }
 }
-
 ## BookingTriggerTest.apex
 
 @isTest
@@ -109,11 +140,12 @@ private class BookingTriggerTest {
             Name = 'John Doe',
             Email__c = 'annapurna@gmail.com',
             Phone__c = '1234567890',
-            Date_Of_Birth__c = Date.newInstance(1995, 5, 20)
+            Date_Of_Birth__c = Date.newInstance(1995, 5, 20),
+            Country__c = 'Philippines' // Required picklist or text field
         );
         insert customer;
 
-        // Create a Travel Package with required fields
+        // Create a Travel Package
         Travel_Package__c packageRec = new Travel_Package__c(
             Name = 'European Delight',
             Country__c = 'India',
@@ -123,6 +155,7 @@ private class BookingTriggerTest {
         );
         insert packageRec;
 
+        // Create Booking
         Booking__c booking = new Booking__c(
             Number_of_Travelers__c = 3,
             Booking_Status__c = 'Pending',
@@ -132,30 +165,31 @@ private class BookingTriggerTest {
             Preferred_Accommodation__c = 'Guest House',
             Customer__c = customer.Id,
             Customer_Email__c = 'annapurna@gmail.com',
-            Booking_Date__c = Date.today() // <-- Required field
+            Booking_Date__c = Date.today()
         );
 
         Test.startTest();
         insert booking;
         Test.stopTest();
 
-        // Validate Payment__c creation
+        // Assert Payment record
         List<Payment__c> payments = [
             SELECT Id, Booking__c, Payment_Status__c 
             FROM Payment__c 
             WHERE Booking__c = :booking.Id
         ];
-        System.assertEquals(1, payments.size(), 'One payment record should be created.');
-        System.assertEquals('Pending', payments[0].Payment_Status__c, 'Default Payment Status should be Pending.');
+        System.assertEquals(1, payments.size());
+        System.assertEquals('Pending', payments[0].Payment_Status__c);
 
-        // Validate Booking_Guest__c creation
+        // Assert Booking Guests
         List<Booking_Guest__c> guests = [
-            SELECT Id, Booking__c, Name 
+            SELECT Id, Booking__c, Name, Country__c 
             FROM Booking_Guest__c 
             WHERE Booking__c = :booking.Id
         ];
-        System.assertEquals(3, guests.size(), 'Three BookingGuest records should be created.');
-        System.assertEquals('Guest 1', guests[0].Name, 'Guest naming should follow convention.');
+        System.assertEquals(3, guests.size());
+        System.assertEquals('John Doe', guests[0].Name);
+        System.assertEquals('Philippines', guests[0].Country__c);
     }
 }
 
