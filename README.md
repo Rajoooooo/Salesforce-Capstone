@@ -1,21 +1,8 @@
+## Phase 2: Salesforce Development - Backend & Configuration
+
 ## Milestone 1: Salesforce Account
-Salesforce Developer Org Setup
-This project documents the steps I followed to create my Salesforce Developer Org for learning and development purposes.
-
-# What I Did
-Went to https://developer.salesforce.com/signup
-
-Filled in the form with:
-
-Job Title: Developer
-
-Company: Developer
-
-Clicked "Sign Me Up"
-
-Verified my email and set my password
-
-Logged in at https://login.salesforce.com
+For Milestone 1 of my Salesforce journey, I successfully created a Salesforce Developer Account to support my learning and development. I began by visiting the official Salesforce signup page at https://developer.salesforce.com/signup. There, I filled out the required form, entering “Developer” as both my job title and company name. After submitting the form by clicking "Sign Me Up," I received a verification email. I verified my email address, set up my password, and then logged in through https://login.salesforce.com. With these steps completed, I officially created my Salesforce Developer Org account, which I will now use for hands-on practice and project development.
+<img width="1902" height="931" alt="Phase 2-milestone1 (1)" src="https://github.com/user-attachments/assets/aedba1a5-26d8-49c2-b0ba-2a1ae5873ff3" />
 
 ## Milestone 2: Object Creation
 This document outlines the process of creating a custom object in Salesforce named Customer Info, which is designed to store and manage customer-related data. The object includes support for reporting, search, and field history tracking to enhance visibility and usability across the platform.
