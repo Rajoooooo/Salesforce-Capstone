@@ -1,5 +1,22 @@
 ## Phase 1: Requirements Analysis & Planning
 
+This phase focused on identifying the core business needs of travel agencies and translating them into a scalable Salesforce CRM solution. It involved gathering user requirements through stakeholder input, defining the project scope, outlining key Salesforce tools and features needed, and designing both the data and security models. The goal was to ensure the system aligns with real-world workflows and supports automation, user roles, and secure data handling.
+
+## Understanding Business Requirements
+The first phase of the Tours and Travels CRM project centered on understanding business needs and translating them into a scalable Salesforce solution. Key challenges identified across travel agencies included manual booking processes, inconsistent customer communication, difficulty managing multiple travel packages, and a lack of visibility over employee coordination and feedback handling.
+
+## Defining Project Scope & Objectives
+Based on the analysis, the system was scoped to support the full lifecycle of travel bookings—from customer inquiry through payment, guest management, and feedback collection. Core requirements included automation of repetitive tasks, dynamic user interfaces, enhanced visibility across departments, and robust analytics. Special considerations were made for supporting different booking types (solo, group, corporate) and incorporating dynamic pricing and membership levels.
+
+## Gathering & Analyzing User Needs
+Input was gathered from various stakeholders—including agents, customer service reps, finance personnel, and end users—using digital tools like surveys and collaborative boards (e.g., Google Forms, Miro) to capture user expectations and common workflow pain points. This helped ensure that real-world user needs drove the system design.
+
+## Identifying Key Salesforce Features & Tools Required
+To meet the CRM's requirements, several Salesforce features were planned: custom objects, automation tools (like Flows, Process Builder, and Apex), validation rules, role hierarchies, and permission sets. Standard and custom objects were chosen to accurately represent business entities, while automation and UI customization tools were selected to enhance efficiency and usability.
+
+## Designing Data Model and Security Model
+Custom objects such as Booking__c, Customer_Info__c, Travel_Package__c, Booking_Guest__c, Payment__c, Employee__c, and Feedback__c were planned to form the backbone of the CRM system. A robust security model was designed, involving roles (e.g., Travel Manager, Finance Officer) mapped to custom profiles. Field-level and record-level security settings, sharing rules, and permission sets were also outlined to ensure sensitive data is protected and only accessible to authorized users.
+
 ## Phase 2: Salesforce Development - Backend & Configuration
 
 Phase 2 established the functional and programmatic backbone of the Tours and Travels CRM. This included setting up a secure Salesforce development environment and building all backend components using a combination of declarative tools and Apex logic.
