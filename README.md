@@ -1,4 +1,8 @@
+## Phase 1: Requirements Analysis & Planning
+
 ## Phase 2: Salesforce Development - Backend & Configuration
+
+Phase 2 established the functional and programmatic backbone of the Tours and Travels CRM. This included setting up a secure Salesforce development environment and building all backend components using a combination of declarative tools and Apex logic.
 
 ## Milestone 1: Salesforce Account
 For Milestone 1 of my Salesforce journey, I successfully created a Salesforce Developer Account to support my learning and development. I began by visiting the official Salesforce signup page at https://developer.salesforce.com/signup. There, I filled out the required form, entering “Developer” as both my job title and company name. After submitting the form by clicking "Sign Me Up," I received a verification email. I verified my email address, set up my password, and then logged in through https://login.salesforce.com. With these steps completed, I officially created my Salesforce Developer Org account, which I will now use for hands-on practice and project development.
@@ -90,7 +94,6 @@ Once all steps were configured and reviewed, I went to the Approval Process Deta
 
 <img width="1832" height="882" alt="Phase 2-milestone6-act3" src="https://github.com/user-attachments/assets/2a304175-852e-4ab2-aef3-62bcad44fcdc" />
 
-
 ## Milestone 8: Flows
 
 To ensure data integrity between the number of guests and travelers in our Tours and Travels CRM, I created a Record-Triggered Flow that prevents users from saving a BookingGuest record if it would result in exceeding the number of travelers specified in the related Booking record. I started by going to Setup, searched for Flow in the Quick Find box, and clicked New Flow. I chose Record-Triggered Flow and clicked Create. For the object, I selected BookingGuest, and configured it to trigger when a record is created or updated. I then set the flow to run using the Fast Field Updates option for better performance.
@@ -103,7 +106,6 @@ Finally, I saved the flow as a new version with the label "Show Error if Guests 
 
 <img width="1832" height="882" alt="Phase 2-milestone6-act3" src="https://github.com/user-attachments/assets/de444dcd-c68d-447f-953c-6713ed25bb30" />
 
-
 ## Milestone 9: Workflow
 
 To automate customer follow-ups and improve post-trip engagement, I created a Workflow Rule in Salesforce that automatically generates a Task for the Travel Agent to contact the customer for feedback whenever a booking is marked as Completed. From Setup, I searched for and selected Workflow Rules, then clicked New Rule and chose to continue with Workflow Rules. I selected Booking as the object and clicked Next.
@@ -114,9 +116,7 @@ In the task setup, I assigned the task to the Booking Owner and set the Subject 
 
 Now, each time a booking is completed, Salesforce automatically creates a follow-up task for the travel agent to check in with the customer, helping ensure better service and useful feedback collection.
 
-
 <img width="1903" height="883" alt="Phase 2-milestone9-Act1 (1)" src="https://github.com/user-attachments/assets/49cab84c-b195-4f20-bb74-d8f0cd0ae735" />
-
 
 ## Milestone 10: Process Builder
 
@@ -124,9 +124,7 @@ To reduce manual updates and improve efficiency in the Tours and Travels CRM, I 
 
 Next, I added a criteria named Payment Completed, where the condition checks if the Payment_Status__c field equals “Completed”. If true, the process runs an immediate action to update the related Booking record, setting its Booking Status to “Confirmed.” After configuring the update, I saved the process and clicked Activate. Now, every time a payment is completed, the booking is automatically updated to confirmed without manual input.
 
-
 <img width="1903" height="883" alt="Phase 2-milestone9-Act1 (1)" src="https://github.com/user-attachments/assets/9764b56e-7e61-4e41-9c68-83f1be55f120" />
-
 
 ## Milestone 11: Triggers
 
@@ -136,9 +134,7 @@ In the same trigger, I added logic to generate Booking_Guest__c records based on
 
 These features were implemented using the Developer Console in Salesforce through a trigger (BookingTrigger) and a handler class (BookingTriggerHandler). Together, they streamline the booking workflow, reduce manual data entry, and ensure that essential related records are consistently created and linked.
 
-
 <img width="1903" height="883" alt="Phase 2-milestone9-Act1 (1)" src="https://github.com/user-attachments/assets/e758d1a9-6cd3-4277-b703-bebfa8ee8685" />
-
 
 ## Milestone 12: Asynchronous Apex
 
@@ -146,10 +142,11 @@ To automate essential customer communications in the Tours and Travels CRM syste
 
 Next, to send tour reminder emails to customers three days before their scheduled travel date, a Queueable class named BookingReminderQueueable was implemented. It processes a list of upcoming bookings and sends emails accordingly. A Schedulable class, BookingReminderScheduler, was also created to query relevant bookings and enqueue the queueable job. This scheduler is then set to run daily at 6 AM via the UI or System.schedule using a cron expression.
 
-
 <img width="1903" height="883" alt="Phase 2-milestone9-Act1 (1)" src="https://github.com/user-attachments/assets/0eb328f4-56d9-424b-87a6-34e98d212c19" />
 
 ## Phase 3: UI/UX Development & Customization
+
+Phase 3 of the Tours & Travels CRM project focused on enhancing the user interface and experience through the configuration of the Lightning App, dynamic forms, customized layouts, dashboards, user access controls, and custom Lightning Web Components. The goal was to provide users with a clean, intuitive, and role-specific interface to support productivity and usability.
 
 ## Milestone 13: The Lighting App
 
@@ -197,9 +194,7 @@ Lastly, for sending payment reminders to customers whose bookings remain in "Pen
 
 These automation enhancements improve customer communication efficiency and ensure timely follow-ups without manual intervention.
 
-
 <img width="1880" height="851" alt="Phase 3-milestone14 act1" src="https://github.com/user-attachments/assets/2eb020b4-d513-4cbd-9da1-b517add968bc" />
-
 
 ## Milestone 15: Dynamic Forms
 
@@ -213,9 +208,7 @@ I repeated the same process for the Cancel Confirmation and Approval Status fiel
 
 After configuring all field visibility settings, I clicked Save, and then selected Activate to publish the changes. I chose Org Default, selected both Desktop and Phone as the form factors, clicked Next, and finally clicked Save to complete the setup.
 
-
 <img width="1880" height="851" alt="Phase 3-milestone14 act1" src="https://github.com/user-attachments/assets/8904a670-cac6-4c75-ae14-4583eb2a1f66" />
-
 
 ## Milestone 16: Users
 
@@ -225,9 +218,7 @@ To begin, I went to Setup, typed "Users" in the Quick Find box, and selected Use
 
 Following that, I repeated the same process to create additional users. I created at least two users for each of the remaining roles: Travel Agent, Finance Officer, Marketing Executive, Customer Service Rep, and Tour Guide. For each user, I ensured the correct role, user license, and profile were assigned, reflecting their specific responsibilities within the Tours and Travels CRM system. This approach helped establish a clean and secure user structure, with appropriate visibility and permissions aligned to each department’s function.
 
-
 <img width="1902" height="921" alt="Phase 3-milestone16-Act1 and 2 (1)" src="https://github.com/user-attachments/assets/2862d10c-8891-4cf3-8ecf-f1ebe596d594" />
-
 
 ## Milestone 17: Reports
 
@@ -247,9 +238,7 @@ Finally, I created five additional custom reports for other use cases, such as a
 
 This comprehensive report setup provides valuable insights into booking trends, employee distribution, payment status, and overall business performance.
 
-
 <img width="1903" height="928" alt="Phase 3-milestone17 act3 (1)" src="https://github.com/user-attachments/assets/f4fe6a57-f8b7-4313-a89b-d44a088629c5" />
-
 
 ## Milestone 18: Dashboard
 
@@ -261,9 +250,7 @@ For Activity 3, I verified the dashboard display. I accessed it by clicking the 
 
 Lastly, in Activity 4, I created two additional dashboards using other reports from the Reports Milestone. Each dashboard focused on specific business areas—such as Booking & Payment Insights and Employee & Package Overview—helping provide better management visibility across CRM operations. All dashboards were saved in appropriate folders and structured with clear, well-labeled charts to ensure readability and usefulness.
 
-
 <img width="1912" height="853" alt="Phase 3-milestone18 act3 (1)" src="https://github.com/user-attachments/assets/c1ca22ba-9cb0-4d4c-8244-4d0f1014a70c" />
-
 
 ## Milestone 19: Lightning Web Component Creation
 
@@ -275,9 +262,7 @@ I defined a static list of countries in the JS file for selection, and based on 
 
 With this setup, users now have a dynamic, user-friendly interface to view only relevant travel packages based on the selected country, improving the overall booking experience.
 
-
 <img width="1867" height="1067" alt="Phase 3-milestone19 act1 (1)" src="https://github.com/user-attachments/assets/943052e4-8570-4dd2-bf4f-c963a135b695" />
-
 
 ## Milestone 20: Lightning App Page Creation
 
@@ -287,10 +272,11 @@ After clicking Next, I chose a One Region layout and clicked Done. In the builde
 
 For activation, I chose Lightning Experience, selected the Tours & Travels CRM app to add the new page, and saved the configuration. Finally, I navigated to the App Launcher, searched for “Travel,” and found both the Tours & Travels CRM app and the new Travel Package Selector app page. Opening either lets users interact with the component—where they can select a country and view its associated travel packages dynamically based on previously created data.
 
-
 <img width="1872" height="928" alt="Phase 3-milestone20 (1)" src="https://github.com/user-attachments/assets/42d82c0e-4223-430c-8db8-737d2f30ce6f" />
 
 ## Phase 4 Data Migration, Testing & Security
+
+This phase focused on securing data integrity, validating system functionality, and ensuring successful data migration in the Tours & Travels CRM. Key configurations related to tracking, user access, automation testing, and import operations were implemented to support a secure and reliable deployment.
 
 ## Milestone 21: Field History Tracking
 
@@ -302,9 +288,7 @@ Next, I enabled tracking for the TravelPackage object. Again, from the Field His
 
 This setup helps maintain a transparent audit trail of key booking and package details for business oversight.
 
-
 <img width="1890" height="932" alt="Phase 4-milestone21 (1)" src="https://github.com/user-attachments/assets/4f72ac99-2f6a-4d31-ae97-9f5a731ba594" />
-
 
 ## Milestone 22: Duplicate nand Matching rule
 
@@ -318,9 +302,7 @@ In the Matching Rules section of the Duplicate Rule setup, I clicked Add Rule, s
 
 This setup helps maintain data accuracy by preventing duplicate customer records based on identical email and phone number combinations.
 
-
 <img width="1872" height="917" alt="Phase 4-milestone22 act 1 (1)" src="https://github.com/user-attachments/assets/62f81953-5f0c-4f8d-9353-2beec74569c3" />
-
 
 ## Milestone 23: Profile
 To properly manage access and responsibilities within the Tours and Travels CRM, I created several custom profiles in Salesforce, each tailored to specific roles in the organization. I began by creating the Travel Agent Profile. From Setup, I searched for Profiles in the Quick Find box, clicked on Profiles, and cloned the Standard Platform User profile. I named the new profile Travel Agent Profile and saved it. While still on the profile page, I clicked Edit, then set the Tours and Travels CRM as the default app under Custom App Settings. I scrolled down to the Custom Object Permissions and configured the necessary access: I gave Read, Create, and Edit permissions for Bookings, Booking Guest, Booking Payments, Customer Info, and Travel Package objects. I also provided Read-only access to the Employee and Feedback objects. I saved the changes, completing the setup for this role.
@@ -333,9 +315,7 @@ Similarly, I created a Marketing Executive Profile, also based on the Salesforce
 
 Through this role-based profile configuration, I ensured that each user group within the organization has access tailored to their specific responsibilities, supporting data security, workflow clarity, and operational efficiency in the Tours and Travels CRM environment.
 
-
 <img width="1906" height="932" alt="Phase 4-milestone22 act 2 (1)" src="https://github.com/user-attachments/assets/2262f232-601e-4f70-97bd-424c99b4b138" />
-
 
 ## Milestone: 24: Roles and Role Hierarchy
 
@@ -355,9 +335,7 @@ Each role was created by clicking Add Role under the CEO, entering the appropria
 
 By setting up these roles under the CEO, I established a clear and scalable hierarchy, ensuring that record visibility aligns with each department's responsibilities while maintaining centralized oversight at the executive level.
 
-
 <img width="1896" height="933" alt="Phase 4-milestone24act1" src="https://github.com/user-attachments/assets/aaaa8afa-18e9-4c5a-b623-c4c0d2f3c815" />
-
 
 ## Milestone 25: Permission Set
 
@@ -369,9 +347,7 @@ Next, I went to Object Settings inside the permission set and searched for the T
 
 To assign this permission set to the appropriate user, I clicked Manage Assignments and then selected Add Assignment. From the user list, I selected the user with the Travel Agent Manager role, clicked Next, and then completed the process by clicking Assign.
 
-
 <img width="1895" height="931" alt="Phase 4-milestone25 (1)" src="https://github.com/user-attachments/assets/59a2fcab-80ad-43a8-bbd1-8c5e06b9332a" />
-
 
 ## Milestone 26: Sharing Setting
 
@@ -385,9 +361,7 @@ In Step 3, I chose to share records owned by members of Roles > Travel Agent Rol
 
 Finally, I clicked Save to activate the sharing rule, allowing secure and role-based access to Customer Info records.
 
-
 <img width="1880" height="932" alt="Phase 4-milestone26 (1)" src="https://github.com/user-attachments/assets/f8fb7534-2ccb-4ab4-82d7-5142eb5c6dde" />
-
 
 ## Milestone 27 -Test Classes
 
@@ -403,9 +377,7 @@ After inserting the booking inside a Test.startTest() and Test.stopTest() block,
 
 This test ensures the booking automation logic functions correctly and provides sufficient code coverage for deployment readiness. Once the test was saved, I ran it and confirmed that it passed without errors.
 
-
 <img width="1007" height="880" alt="Phase 4-milestone27 (1)" src="https://github.com/user-attachments/assets/11dab355-68f3-498f-a645-706d84bc4d86" />
-
 
 ## Milestone 28: Preparing Test Cases & Fixing Defects
 This section outlines the key test cases conducted to validate the core functionalities of the Tours & Travels CRM system, specifically focusing on customer creation, booking automation, and payment-triggered updates.
@@ -421,14 +393,45 @@ The final test focused on verifying automation triggered by the payment update. 
 
 These test cases ensure that the system not only saves records correctly but also triggers the appropriate downstream logic such as record creation, status updates, and email communication, thereby validating the reliability of the overall CRM process.
 
-
 <img width="1906" height="932" alt="Phase 4-milestone28 act 3 (1)" src="https://github.com/user-attachments/assets/c8da7471-6c71-4ee8-ac79-93b8bb302414" />
-
 
 ## Milestone 29: Data Import Wizard
 
 To populate the system with sample data, we prepared CSV files for Customer Info, TravelPackage, and Employee objects, each containing at least 20 well-structured records including all required fields. Using the Salesforce Data Import Wizard, we imported these records by navigating to Setup > Data Import Wizard, selecting the relevant object (e.g., Customer Info), and choosing the “Add new records” option. After uploading the CSV file, we reviewed and manually mapped the fields where necessary. Once confirmed, we proceeded with the import and monitored the job’s progress via Setup > Bulk Data Load Jobs. This process was repeated for all three objects to ensure accurate and complete data population.
 
-
 <img width="1902" height="877" alt="Phase 4-milestone29 Customer Info data (1)" src="https://github.com/user-attachments/assets/d47e8c7b-778e-43d8-874f-8e877e1172b3" />
+
+## Phase 5: Deployment, Documentation & Maintenance
+
+# Deployment Strategy
+
+The deployment of components from sandbox to production was primarily handled using Change Sets. Standard objects, fields, workflows, approval processes, and validation rules were included in outbound change sets. For components not supported by change sets—such as Lightning Web Components (LWC) and custom metadata—Salesforce DX and Workbench were used for deployment. Before deploying to production, all components were validated and tested in a full sandbox environment to avoid disruption and ensure a smooth rollout.
+
+# System Maintenance and Monitoring 
+
+To ensure long-term stability and reliability, the system is maintained through regular monitoring of scheduled jobs, flows, and Apex processes. Admins review system logs, exception messages, and monitor email alerts generated by the platform. Performance and user feedback are also considered to identify areas needing optimization. Periodic reviews of test coverage, record visibility, and user permissions help in maintaining system health and scalability. Metadata backups are taken regularly to prepare for any future recovery needs.
+# Troubleshooting Approach
+
+Troubleshooting follows a structured process. For Apex errors or failed automation, debug logs are reviewed to trace the source of issues. Flow error messages, email alerts, and system logs are used to pinpoint where failures occur in business processes. Issues are first reproduced in the sandbox, where fixes are tested thoroughly before deploying to production. For critical components, a rollback plan is prepared using metadata backups or prior change set versions. This approach ensures minimal downtime and secure, fast resolution of problems.
+
+## Conculsion 
+
+The successful development and implementation of the Tours & Travels CRM on the Salesforce platform marks a significant step toward modernizing and streamlining operations in the travel and tourism industry. By combining robust data models, process automation, custom interfaces, and secure access controls, the system addresses core business challenges such as booking complexity, customer engagement, payment tracking, and employee coordination.
+Through the integration of custom objects, Apex logic, Flows, approval processes, and dynamic forms, the CRM ensures an efficient and user-friendly experience across departments. Rigorous testing, field history tracking, role-based access, and data validation mechanisms further enhance reliability and data integrity.
+With real-time dashboards, responsive Lightning pages, and custom Lightning Web Components, users can interact with the system seamlessly and make data-driven decisions. The structured deployment and ongoing maintenance strategy ensures scalability and sustainability in future phases.
+Overall, the Tours & Travels CRM provides a comprehensive, scalable, and secure solution tailored to the operational needs of a travel agency, setting the foundation for improved efficiency, customer satisfaction, and business growth.
+
+## What I have learn
+
+Throughout the development of the Tours & Travels CRM capstone project, I gained valuable hands-on experience in designing and implementing a complete Salesforce-based solution that aligns with real business needs. One of the most significant learning outcomes was deepening my understanding of Salesforce’s core features, such as creating and customizing objects, fields, and validation rules. I applied these concepts in building objects like Bookings, Travel Packages, and Customer Info, ensuring that each component accurately captured the required data. I also configured field dependencies and validation rules to maintain data consistency and enforce user-friendly interactions.
+
+A key area of growth was in implementing process automation. I learned to use declarative tools like Workflow Rules, Process Builder, Record-Triggered Flows, and Approval Processes to automate critical business actions, such as auto-generating follow-up tasks, updating booking statuses, and managing cancellation approvals with email notifications. Additionally, I developed Apex Triggers and Classes to handle custom logic, including automated record creation for related objects and asynchronous processing using Queueable and Schedulable Apex for tasks like sending reminders and confirmation emails.
+
+In terms of data management, I became proficient with tools such as the Data Import Wizard and gained a clear understanding of how to maintain data quality through Matching Rules and Duplicate Rules. This allowed me to prevent redundant entries and ensure accurate customer records. I also utilized Field History Tracking to monitor updates to sensitive data fields, supporting traceability and accountability.
+
+Another crucial aspect of this project was understanding Salesforce security features. I learned to manage data access using Profiles, Roles, Permission Sets, and Sharing Rules. These configurations allowed me to implement role-based access control while maintaining record-level visibility across departments like Finance, Marketing, and Customer Service. I also explored UI customization by creating a Lightning App, updating page layouts, and using Dynamic Forms. Building and deploying a Lightning Web Component (LWC) for filtering Travel Packages further expanded my skills in front-end development on the Salesforce platform.
+
+Testing and debugging were essential throughout the project. I wrote Apex test classes to verify automation logic and ensure deployment readiness. I also performed functional and UI testing, reviewed debug logs, and documented issues and resolutions. These practices helped ensure the CRM functioned smoothly and met all project requirements.
+
+Lastly, this project strengthened my ability to gather and analyze requirements, plan development phases, and document system configurations. It taught me how to think critically, apply practical Salesforce solutions, and maintain a balance between functionality, security, and usability. Overall, the capstone project was a comprehensive learning experience that enhanced both my technical capabilities and problem-solving skills within the Salesforce ecosystem.
 
