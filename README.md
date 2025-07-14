@@ -6,11 +6,11 @@ The Tours and Travels CRM is a Salesforce-based system designed to streamline tr
 
 ![logo t](https://github.com/user-attachments/assets/23f36000-04db-453c-8fab-08c8ec12ed65)
 
-# Documentation Link: [Click me](https://docs.google.com/document/d/1TMOI_9lHdf15r9tn8HstGg5mp7GM2BGN6wKv6AqDeIA/edit?usp=sharing)
-# Screen Shot Documentation: [Click me](https://drive.google.com/drive/folders/16LoDim5UMs9iOmgUdcf8eY86wkyKrrnS?usp=sharing)
+Documentation Link: [Click me](https://docs.google.com/document/d/1TMOI_9lHdf15r9tn8HstGg5mp7GM2BGN6wKv6AqDeIA/edit?usp=sharing)
+Screen Shot Documentation: [Click me](https://drive.google.com/drive/folders/16LoDim5UMs9iOmgUdcf8eY86wkyKrrnS?usp=sharing)
 
 
-### Phase 1: Requirements Analysis & Planning
+## Phase 1: Requirements Analysis & Planning
 
 This phase focused on identifying the core business needs of travel agencies and translating them into a scalable Salesforce CRM solution. It involved gathering user requirements through stakeholder input, defining the project scope, outlining key Salesforce tools and features needed, and designing both the data and security models. The goal was to ensure the system aligns with real-world workflows and supports automation, user roles, and secure data handling.
 
