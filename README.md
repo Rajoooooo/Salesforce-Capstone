@@ -206,6 +206,8 @@ In the final step, I configured user access. From the Available Profiles list, I
 
 With this setup, the Tours & Travels CRM Lightning App is now available to users with the appropriate profile and provides a centralized workspace tailored for travel-related operations.
 
+<img width="1917" height="762" alt="Phase 3-milestone13" src="https://github.com/user-attachments/assets/2a8f17d9-2e3b-4f4a-87e5-6d3488c5aa95" />
+
 ## Milestone 14: Editing of Page Layouts
 
 As part of optimizing the user interface in Salesforce, I updated the Page Layouts for several custom objects to improve field organization and ensure better data visibility. First, I navigated to Setup > Object Manager and searched for each object individually using the Quick Find box.
