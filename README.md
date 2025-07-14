@@ -1,4 +1,4 @@
-### Project Overview
+## Project Overview
 
 The Tours and Travels CRM is a Salesforce-based system designed to streamline travel agency operations by managing bookings, customer information, payments, travel packages, and employee coordination in one platform. It aims to digitalize core processes, enhance customer experience, and support efficient collaboration among staff. Key features include automated workflows, role-based access, country-based package filtering, real-time booking updates, and analytics dashboards. This CRM empowers travel agencies to reduce manual tasks, improve responsiveness, and make data-driven decisions—driving productivity and customer satisfaction in the travel industry.
 
@@ -6,8 +6,8 @@ The Tours and Travels CRM is a Salesforce-based system designed to streamline tr
 
 ![logo t](https://github.com/user-attachments/assets/23f36000-04db-453c-8fab-08c8ec12ed65)
 
-## Documentation Link: [Click me](https://docs.google.com/document/d/1TMOI_9lHdf15r9tn8HstGg5mp7GM2BGN6wKv6AqDeIA/edit?usp=sharing)
-## Screen Shot Documentation: [Click me](https://drive.google.com/drive/folders/16LoDim5UMs9iOmgUdcf8eY86wkyKrrnS?usp=sharing)
+# Documentation Link: [Click me](https://docs.google.com/document/d/1TMOI_9lHdf15r9tn8HstGg5mp7GM2BGN6wKv6AqDeIA/edit?usp=sharing)
+# Screen Shot Documentation: [Click me](https://drive.google.com/drive/folders/16LoDim5UMs9iOmgUdcf8eY86wkyKrrnS?usp=sharing)
 
 
 ### Phase 1: Requirements Analysis & Planning
@@ -52,7 +52,6 @@ This setup creates a robust foundation for managing customer information within 
 
 <img width="1896" height="938" alt="Phase 2-milestone2 (1)" src="https://github.com/user-attachments/assets/53614315-4cb4-46ba-bdd5-6bd58bda5ce8" />
 
-
 ## Milestone 3: Tabs
 
 To make custom objects easily accessible in the Salesforce interface, I created tabs for each one. I began by going to the Setup page and typing "Tabs" in the Quick Find bar. I then clicked on the Tabs section under the User Interface. Under the Custom Object Tabs section, I clicked New to start the process of creating a new tab.
@@ -62,7 +61,6 @@ For the first object, Customer Info, I selected it from the object dropdown and 
 I followed the same exact steps for the remaining custom objects: Booking, Booking Guest, Travel Package, Payment, Employee, and Feedback. Creating these tabs allows each object to be accessed directly from the Salesforce navigation menu, improving usability and enabling quick access for managing records.
 
 <img width="1891" height="935" alt="Phase 2-milestone3-act2 (1)" src="https://github.com/user-attachments/assets/a4640fd0-dc18-4052-a3c6-f90591a1fa2b" />
-
 
 ## Milestone 4: Field & Relationship
 
@@ -86,14 +84,12 @@ I implemented this feature specifically in the Booking Guest object, where I mad
 
 <img width="1876" height="922" alt="Phase 2-milestone5-act3" src="https://github.com/user-attachments/assets/6f159598-5485-4820-a2fa-20496d9eba83" />
 
-
 ## Milestone 6: Validation Rules
 
 To maintain accurate and consistent data in Salesforce, I implemented Validation Rules that enforce specific conditions before a record can be saved. These rules are designed to catch incorrect or incomplete inputs by automatically displaying an error message when the data entered doesn't meet the defined criteria. For example, I created a validation rule to prevent saving a new record unless the Status picklist is set to “Pending.” This ensures that users follow the correct status flow when creating records. I used logical functions like ISNEW() and ISPICKVAL() to define these conditions, and thoroughly tested the rule to make sure it works as intended. By doing this, I was able to improve the reliability of our data and reduce manual errors during data entry.
 To ensure data quality in my Salesforce application, I implemented Validation Rules that verify whether the data entered into a record meets specific criteria before it can be saved. I configured these rules so that if a user enters invalid or incomplete information, Salesforce displays an error message and prevents the record from being saved. This helps maintain consistency and accuracy across the system. For example, I created a validation rule to restrict certain picklist values unless other conditions are met, ensuring that users follow the correct process flow when submitting records.
 
 <img width="1832" height="882" alt="Phase 2-milestone6-act3" src="https://github.com/user-attachments/assets/e586c555-6ceb-45df-a631-94ea363d99ce" />
-
 
 ## Milestone 7: Approval Process
 
